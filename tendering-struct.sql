@@ -14,8 +14,10 @@
  Date: 13/08/2025 11:38:00
 */
 
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
 
 -- ----------------------------
 -- Table structure for batch_achieve

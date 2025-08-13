@@ -23,6 +23,7 @@ import redis
 import tempfile
 from multiprocessing import Process
 
+
 # 配置日志
 logging.basicConfig(
     level=logging.INFO,

@@ -4,7 +4,7 @@ Author: Joe Guo
 version: 
 Date: 2025-08-12 14:09:48
 LastEditors: Joe Guo
-LastEditTime: 2025-08-13 14:41:10
+LastEditTime: 2025-08-13 17:06:49
 '''
 
 import os
@@ -56,7 +56,8 @@ TASK_BID_MAPPING = "task:bid:mapping"
 SCORE_TASK_QUEUE_KEY = "score_task:queue"
 SCORE_TASK_STATUS_KEY = "score_task:status:{task_id}"
 SCORE_TASK_RESULT_KEY = "score_task:result:{task_id}"
-SCORE_TASK_ID_MAPPING = "score_task:id:mapping"
+# 修改映射关系为bid到task_id的映射
+SCORE_TASK_BID_MAPPING = "score_task:bid:mapping"
 
 # 初始化Redis连接
 redis_client = redis.from_url(REDIS_URL)
@@ -101,13 +102,15 @@ def get_task_id_by_bid(bid):
     return task_id.decode() if task_id else None
 
 # Redis操作工具函数 - 新增商务评分标准相关
-def add_score_task_to_queue(task_id, file_path):
+def add_score_task_to_queue(task_id, bid, file_path):
     task_data = {
         "task_id": task_id,
+        "bid": bid,  # 新增bid字段
         "file_path": file_path
     }
     redis_client.rpush(SCORE_TASK_QUEUE_KEY, json.dumps(task_data))
-    redis_client.set(f"{SCORE_TASK_ID_MAPPING}:{task_id}", task_id)
+    # 建立bid到task_id的映射
+    redis_client.set(f"{SCORE_TASK_BID_MAPPING}:{bid}", task_id)
     set_score_task_status(task_id, TaskStatus.PENDING)
 
 def get_next_score_task():
@@ -127,6 +130,11 @@ def set_score_task_result(task_id, result):
 def get_score_task_result(task_id):
     result = redis_client.get(SCORE_TASK_RESULT_KEY.format(task_id=task_id))
     return json.loads(result) if result else None
+
+# 新增：通过bid获取商务评分任务ID
+def get_score_task_id_by_bid(bid):
+    task_id = redis_client.get(f"{SCORE_TASK_BID_MAPPING}:{bid}")
+    return task_id.decode() if task_id else None
 
 # 文件处理工具函数（复用原有函数）
 def convert_to_pdf(file_path, libreoffice_path=None):
@@ -268,7 +276,13 @@ def extract_business_score(pdf_content):
             "messages": [
                 {
                     "role": "user",
-                    "content": f"""请帮我从提供的文件中提取商务评分标准相关信息，并按照以下结构化格式返回结果。具体要求如下：
+                    "content": f"""请帮我从提供的PDF文件中提取商务评分标准相关信息，具体包括但不限于以下可能涉及的方面：
+                    - 价格部分的评分规则（如基准价设定、价格偏差对应的分值计算方式等）
+                    - 财务状况的评分标准（如注册资本、净资产、盈利能力等指标的评分依据）
+                    - 商业信誉的评分细则（如是否有不良记录、获得的荣誉资质等对应的分值）
+                    - 履约能力相关的评分标准（如类似项目业绩的数量、规模及对应分值等）
+
+                    请按照以下结构化格式返回结果，不要多余的内容：
 
                     1. 整体结构：返回内容需包含状态信息和商务评分标准列表，分别为"返回状态"和"scoreCriteria"。
 
@@ -289,8 +303,31 @@ def extract_business_score(pdf_content):
                     - 若文件中无对应信息，该字段留空即可
                     - 请严格按照上述格式（包括字段名称、类型、格式要求）返回，避免遗漏或格式错误
 
-                    请处理以下PDF文件内容,返回符合要求的结构化数据，不要多余的内容：
+                    请处理以下PDF文件内容，返回符合要求的结构化数据：
                     {pdf_content}"""
+                    # "content": f"""请帮我从提供的文件中提取商务评分标准相关信息，并按照以下结构化格式返回结果。具体要求如下：
+
+                    # 1. 整体结构：返回内容需包含状态信息和商务评分标准列表，分别为"返回状态"和"scoreCriteria"。
+
+                    # 2. 各字段详细要求：
+                    # - 返回状态：
+                    #     - retCode：字符串类型，取值范围为"0000"（返回成功）、"0001"（解析中）、"9999"（解释失败），示例："0000"
+                    #     - retMessage：字符串类型，用于说明错误原因，若返回成功则留空，示例：""
+
+                    # - scoreCriteria（商务评分标准列表）：
+                    #     是一个数组，每个元素包含以下字段：
+                    #     - dimension：字符串类型，评分维度，例如："企业资质"、"财务状况"等
+                    #     - criteria：字符串类型，具体评分标准，例如："具备ISO9001认证得3分"
+                    #     - description：字符串类型，补充说明，例如："需提供认证证书复印件并加盖公章"
+                    #     - maxScore：十进制数类型，该维度最高分值，示例："5.00"
+                    #     - scoringMethod：字符串类型，评分方法，例如："满足条件得满分，不满足得0分"
+
+                    # 3. 补充说明：
+                    # - 若文件中无对应信息，该字段留空即可
+                    # - 请严格按照上述格式（包括字段名称、类型、格式要求）返回，避免遗漏或格式错误
+
+                    # 请处理以下PDF文件内容,返回符合要求的结构化数据，不要多余的内容：
+                    # {pdf_content}"""
                 }
             ],
             "stream": False
@@ -317,7 +354,8 @@ def extract_business_score(pdf_content):
         
         # 解析结果并构建包含状态信息的完整结构
         extracted_data = json.loads(core_content)
-        
+        logger.info(extracted_data)
+
         # 构建包含状态信息的返回结构
         return {
             "retCode": extracted_data.get("retCode", "0000"),
@@ -398,11 +436,12 @@ def process_task(task):
 # 新增商务评分标准任务处理函数
 def process_score_task(task):
     task_id = task["task_id"]
+    bid = task["bid"]  # 新增获取bid
     file_path = task["file_path"]
     
     try:
         set_score_task_status(task_id, TaskStatus.PROCESSING)
-        logger.info(f"开始处理商务评分任务 {task_id}")
+        logger.info(f"开始处理商务评分任务 {task_id}, bid: {bid}")  # 日志增加bid信息
         
         # 转换为PDF
         pdf_path = convert_to_pdf(file_path)
@@ -540,9 +579,10 @@ async def get_result(bid: str):
         "bidBond": {}
     })
 
-# 新增接口 - 提交商务评分标准处理任务
+# 新增接口 - 提交商务评分标准处理任务（增加bid参数）
 @app.post("/api/business_score_tasks", summary="提交商务评分标准文件处理任务")
 async def create_score_task(
+    bid: str = Form(..., description="投标编号"),
     file: UploadFile = File(..., description="待处理的文件")
 ):
     # 验证文件类型
@@ -555,18 +595,19 @@ async def create_score_task(
     
     # 保存文件到临时目录
     try:
-        # 生成唯一任务ID作为文件名前缀
+        # 生成唯一任务ID作为文件名前缀，同时包含bid便于追踪
         task_id = generate_task_id()
-        file_path = os.path.join(TEMP_DIR.name, f"{task_id}_{file.filename}")
+        file_path = os.path.join(TEMP_DIR.name, f"{bid}_{task_id}_{file.filename}")
         with open(file_path, "wb") as f:
             content = await file.read()
             f.write(content)
         
-        # 创建任务
-        add_score_task_to_queue(task_id, file_path)
+        # 创建任务（增加bid参数）
+        add_score_task_to_queue(task_id, bid, file_path)
         
         return JSONResponse({
             "task_id": task_id,
+            "bid": bid,
             "status": TaskStatus.PENDING.value,
             "message": "商务评分标准提取任务已提交，正在等待处理"
         })
@@ -576,14 +617,14 @@ async def create_score_task(
             content={"message": f"创建商务评分任务失败: {str(e)}"}
         )
 
-# 新增接口 - 查询商务评分标准结果
+# 新增接口 - 查询商务评分标准结果（修改为通过bid查询）
 @app.get("/api/business_score_results", summary="查询商务评分标准任务结果")
-async def get_score_result(task_id: str):
-    """通过task_id查询商务评分标准任务结果"""
-    # 检查任务是否存在
-    task_exists = redis_client.exists(f"{SCORE_TASK_ID_MAPPING}:{task_id}")
-    if not task_exists:
-        raise HTTPException(status_code=404, detail="未找到该task_id对应的任务")
+async def get_score_result(bid: str):
+    """通过bid查询商务评分标准任务结果"""
+    # 通过bid获取任务ID
+    task_id = get_score_task_id_by_bid(bid)
+    if not task_id:
+        raise HTTPException(status_code=404, detail="未找到该bid对应的任务")
     
     status = get_score_task_status(task_id)
     if not status:

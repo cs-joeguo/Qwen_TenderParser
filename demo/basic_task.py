@@ -1,12 +1,3 @@
-'''
-Descripttion: qwen提取标书中的招标信息
-Author: Joe Guo
-version: 
-Date: 2025-08-12 14:09:48
-LastEditors: Joe Guo
-LastEditTime: 2025-08-13 14:17:00
-'''
-
 import os
 import json
 import uuid
@@ -22,7 +13,6 @@ import uvicorn
 import redis
 import tempfile
 from multiprocessing import Process
-
 
 # 配置日志
 logging.basicConfig(

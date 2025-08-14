@@ -4,9 +4,8 @@ Author: Joe Guo
 version: 
 Date: 2025-08-12 14:09:48
 LastEditors: Joe Guo
-LastEditTime: 2025-08-13 17:39:53
+LastEditTime: 2025-08-14 10:30:00
 '''
-
 import os
 import json
 import uuid
@@ -38,6 +37,8 @@ REDIS_PASSWORD = "Zjtx@2024CgAi"
 REDIS_URL = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
 SUPPORTED_EXTENSIONS = ['.docx', '.xlsx', '.pptx', '.doc', '.xls', '.ppt', '.pdf']
 EXTRACT_API_URL = "http://192.168.230.29:8000/v1/chat/completions"
+# 新增：数据库结构文件路径
+DB_STRUCT_PATH = "tendering-struct.txt"  # 确保该文件与脚本同目录
 
 # 任务状态枚举
 class TaskStatus(str, Enum):
@@ -46,26 +47,21 @@ class TaskStatus(str, Enum):
     SUCCESS = "success"
     FAILED = "failed"
 
-# Redis键前缀 - 原有招标信息相关
+# Redis键前缀配置（保持不变）
 TASK_QUEUE_KEY = "task:queue"
 TASK_STATUS_KEY = "task:status:{task_id}"
 TASK_RESULT_KEY = "task:result:{task_id}"
 TASK_BID_MAPPING = "task:bid:mapping"
-
-# Redis键前缀 - 新增商务评分标准相关
 SCORE_TASK_QUEUE_KEY = "score_task:queue"
 SCORE_TASK_STATUS_KEY = "score_task:status:{task_id}"
 SCORE_TASK_RESULT_KEY = "score_task:result:{task_id}"
-# 修改映射关系为bid到task_id的映射
 SCORE_TASK_BID_MAPPING = "score_task:bid:mapping"
 
-# 初始化Redis连接
+# 初始化Redis连接（保持不变）
 redis_client = redis.from_url(REDIS_URL)
-
-# 临时文件目录
 TEMP_DIR = tempfile.TemporaryDirectory(prefix="tender_")
 
-# Redis操作工具函数 - 原有招标信息相关
+# Redis操作工具函数（保持不变）
 def generate_task_id():
     return str(uuid.uuid4())
 
@@ -101,15 +97,13 @@ def get_task_id_by_bid(bid):
     task_id = redis_client.get(f"{TASK_BID_MAPPING}:{bid}")
     return task_id.decode() if task_id else None
 
-# Redis操作工具函数 - 新增商务评分标准相关
 def add_score_task_to_queue(task_id, bid, file_path):
     task_data = {
         "task_id": task_id,
-        "bid": bid,  # 新增bid字段
+        "bid": bid,
         "file_path": file_path
     }
     redis_client.rpush(SCORE_TASK_QUEUE_KEY, json.dumps(task_data))
-    # 建立bid到task_id的映射
     redis_client.set(f"{SCORE_TASK_BID_MAPPING}:{bid}", task_id)
     set_score_task_status(task_id, TaskStatus.PENDING)
 
@@ -131,12 +125,11 @@ def get_score_task_result(task_id):
     result = redis_client.get(SCORE_TASK_RESULT_KEY.format(task_id=task_id))
     return json.loads(result) if result else None
 
-# 新增：通过bid获取商务评分任务ID
 def get_score_task_id_by_bid(bid):
     task_id = redis_client.get(f"{SCORE_TASK_BID_MAPPING}:{bid}")
     return task_id.decode() if task_id else None
 
-# 文件处理工具函数（复用原有函数）
+# 文件处理工具函数（保持不变）
 def convert_to_pdf(file_path, libreoffice_path=None):
     try:
         file_dir = os.path.dirname(file_path)
@@ -176,7 +169,7 @@ def extract_text_from_pdf(pdf_path):
         logger.error(f"提取PDF文本失败: {str(e)}")
         return None
 
-# 原有招标信息提取函数
+# 原有招标信息提取函数（保持不变）
 def extract_info(pdf_content):
     try:
         payload = {
@@ -223,19 +216,16 @@ def extract_info(pdf_content):
             ],
             "stream": False
         }
-
         headers = {"Content-Type": "application/json"}
         response = requests.post(
             EXTRACT_API_URL,
             headers=headers,
             data=json.dumps(payload)
         )
-
         response.raise_for_status()
         
         response_data = response.json()
         core_content = response_data["choices"][0]["message"]["content"]
-        # 去除Markdown代码块标记
         core_content = core_content.strip()
         if core_content.startswith("```json"):
             core_content = core_content[len("```json"):]
@@ -243,10 +233,7 @@ def extract_info(pdf_content):
             core_content = core_content[:-len("```")]
         core_content = core_content.strip()
         
-        # 解析结果并构建包含状态信息的完整结构
         extracted_data = json.loads(core_content)
-        
-        # 构建包含状态信息的返回结构
         return {
             "retCode": extracted_data.get("retCode", "0000"),
             "retMessage": extracted_data.get("retMessage", "解析成功"),
@@ -254,66 +241,83 @@ def extract_info(pdf_content):
             "bidContactInfo": extracted_data.get("bidContactInfo", {}),
             "bidBond": extracted_data.get("bidBond", {})
         }
-
         
-    except requests.exceptions.HTTPError as e:
-        logger.error(f"API请求错误: {e}")
-        raise Exception(f"API请求错误: {e}")
-    except KeyError as e:
-        logger.error(f"API响应结构错误，缺少字段: {e}")
-        raise Exception(f"API响应结构错误: {e}")
-    except json.JSONDecodeError as e:
-        logger.error(f"解析API返回结果失败: {e}")
-        raise Exception(f"解析结果失败: {e}")
     except Exception as e:
         logger.error(f"信息提取过程出错: {e}")
         raise Exception(f"信息提取出错: {e}")
 
-# 新增商务评分标准提取函数
+# 优化后的商务评分标准提取函数
 def extract_business_score(pdf_content):
     try:
+        # 读取数据库结构文件内容
+        if not os.path.exists(DB_STRUCT_PATH):
+            raise Exception(f"数据库结构文件不存在: {DB_STRUCT_PATH}")
+        with open(DB_STRUCT_PATH, "r", encoding="utf-8") as f:
+            db_struct = f.read()
+        
         payload = {
             "messages": [
                 {
                     "role": "user",
-                    "content": f"""请帮我从提供的PDF文件中提取商务评分标准相关信息，具体包括但不限于以下可能涉及的方面：
-                    - 价格部分的评分规则（如基准价设定、价格偏差对应的分值计算方式等）
-                    - 财务状况的评分标准（如注册资本、净资产、盈利能力等指标的评分依据）
-                    - 商业信誉的评分细则（如是否有不良记录、获得的荣誉资质等对应的分值）
-                    - 履约能力相关的评分标准（如类似项目业绩的数量、规模及对应分值等）
-
-                    请按照以下结构化格式返回结果，不要多余的内容：
-
-                    1. 整体结构：返回内容需包含状态信息和商务评分标准文段，分别为"返回状态"和"scoreCriteria"。
-
-                    2. 各字段详细要求：
-                    - 返回状态：
-                        - retCode：字符串类型，取值范围为"0000"（返回成功）、"0001"（解析中）、"9999"（解析失败），示例："0000"
-                        - retMessage：字符串类型，用于说明错误原因，若返回成功则留空，示例：""
-
-                    - scoreCriteria（商务评分标准文段）：
-                        字符串类型，**必须是整合所有维度信息的连贯自然段落**，需包含价格、财务状况、商业信誉、履约能力等各维度的具体评分规则、补充说明、最高分值及评分方法等内容。  
-                        ▶ 禁止使用任何结构化格式（如字典、数组、分点、标题、层级划分等），仅以连贯的文字串联所有信息；  
-                        ▶ 语言需流畅，逻辑清晰，按维度自然过渡（如“价格部分的评分规则为...；财务状况方面...；商业信誉评分则依据...；履约能力评分主要考察...”）。
-
+                    "content": f"""请结合以下数据库表结构信息和PDF文件内容，提取商务评分标准并生成结构化数据：
+                    
+                    【数据库表结构参考】
+                    {db_struct}
+                    
+                    【提取要求】
+                    1. 从PDF中识别所有评分项，每个评分项需包含：
+                       - itemName：评分项完整描述（字符串类型）
+                       - score：该项分值（数字类型，保留两位小数）
+                       - itemTag：业务标签（如"项目业绩"、"公司资质"、"人员要求"等）
+                       - quantity：数量要求（无则留空，数字类型）
+                       - TagCondition：条件数组，每个条件包含：
+                         - fieldName：对应数据库表字段名（需从表结构中匹配，字符串类型）
+                         - judge：判断方式（如BETWEEN、LIKE、GEQ、LEQ、EQ等）
+                         - condition：条件值数组（根据判断方式填写对应格式值）
+                    
+                    2. 返回格式示例：
+                    {{
+                      "retCode": "0000",
+                      "retMessage": "",
+                      "criteria": [
+                        {{
+                          "itemName": "比较合同签订时间在投标截止时间前三年以内的销售业绩",
+                          "score": 15,
+                          "itemTag": "项目业绩",
+                          "quantity": 8,
+                          "TagCondition": [
+                            {{
+                              "fieldName": "win_bid_date",
+                              "judge": "BETWEEN",
+                              "condition": ["2022-07", "2025-07"]
+                            }},
+                            {{
+                              "fieldName": "contract_amount",
+                              "judge": "GEQ",
+                              "condition": [4000000.00]
+                            }}
+                          ]
+                        }}
+                      ]
+                    }}
+                    
                     3. 补充说明：
-                    - 若文件中无对应信息，scoreCriteria字段留空即可
-                    - 请严格按照上述格式（包括字段名称、类型要求）返回，**尤其确保scoreCriteria为单一连贯段落，无任何结构化元素**
-
-                    请处理以下PDF文件内容，返回符合要求的结构化数据：
+                    - 若无法匹配数据库字段，fieldName留空字符串
+                    - 严格遵循JSON格式，禁止任何多余文本
+                    - 若PDF中无相关信息，criteria返回空数组
+                    
+                    【PDF内容】
                     {pdf_content}"""
                 }
             ],
             "stream": False
         }
-
         headers = {"Content-Type": "application/json"}
         response = requests.post(
             EXTRACT_API_URL,
             headers=headers,
             data=json.dumps(payload)
         )
-
         response.raise_for_status()
         
         response_data = response.json()
@@ -326,17 +330,27 @@ def extract_business_score(pdf_content):
             core_content = core_content[:-len("```")]
         core_content = core_content.strip()
         
-        # 解析结果并构建包含状态信息的完整结构
+        # 解析结果并验证结构
         extracted_data = json.loads(core_content)
-        logger.info(extracted_data)
-
-        # 构建包含状态信息的返回结构
+        
+        # 结构校验
+        if "criteria" not in extracted_data:
+            extracted_data["criteria"] = []
+        for item in extracted_data["criteria"]:
+            # 确保必要字段存在
+            for key in ["itemName", "score", "itemTag", "TagCondition"]:
+                if key not in item:
+                    item[key] = "" if key != "score" else 0
+                # 格式化数量字段
+                if "quantity" in item and item["quantity"] in (None, ""):
+                    item["quantity"] = None
+        
+        # 构建返回结构
         return {
             "retCode": extracted_data.get("retCode", "0000"),
             "retMessage": extracted_data.get("retMessage", "解析成功"),
-            "scoreCriteria": extracted_data.get("scoreCriteria", [])
+            "criteria": extracted_data.get("criteria", [])
         }
-
         
     except requests.exceptions.HTTPError as e:
         logger.error(f"API请求错误: {e}")
@@ -351,7 +365,7 @@ def extract_business_score(pdf_content):
         logger.error(f"商务评分标准提取过程出错: {e}")
         raise Exception(f"商务评分标准提取出错: {e}")
 
-# 原有任务处理函数
+# 原有任务处理函数（保持不变）
 def process_task(task):
     task_id = task["task_id"]
     bid = task["bid"]
@@ -361,20 +375,15 @@ def process_task(task):
         set_task_status(task_id, TaskStatus.PROCESSING)
         logger.info(f"开始处理任务 {task_id}, bid: {bid}")
         
-        # 转换为PDF
         pdf_path = convert_to_pdf(file_path)
         if not pdf_path:
             raise Exception("文件转换为PDF失败")
         
-        # 提取PDF内容
         pdf_content = extract_text_from_pdf(pdf_path)
         if not pdf_content:
             raise Exception("提取PDF内容失败")
         
-        # 提取信息（包含状态信息的完整结构）
         result = extract_info(pdf_content)
-        
-        # 存储包含状态信息的结果
         set_task_status(task_id, TaskStatus.SUCCESS)
         set_task_result(task_id, result)
         
@@ -398,7 +407,6 @@ def process_task(task):
             except Exception as e:
                 logger.warning(f"删除临时文件失败: {str(e)}")
         
-        # 清理PDF文件
         pdf_path = os.path.splitext(file_path)[0] + ".pdf"
         if os.path.exists(pdf_path):
             try:
@@ -407,30 +415,25 @@ def process_task(task):
             except Exception as e:
                 logger.warning(f"删除临时PDF文件失败: {str(e)}")
 
-# 新增商务评分标准任务处理函数
+# 优化后的商务评分标准任务处理函数
 def process_score_task(task):
     task_id = task["task_id"]
-    bid = task["bid"]  # 新增获取bid
+    bid = task["bid"]
     file_path = task["file_path"]
     
     try:
         set_score_task_status(task_id, TaskStatus.PROCESSING)
-        logger.info(f"开始处理商务评分任务 {task_id}, bid: {bid}")  # 日志增加bid信息
+        logger.info(f"开始处理商务评分任务 {task_id}, bid: {bid}")
         
-        # 转换为PDF
         pdf_path = convert_to_pdf(file_path)
         if not pdf_path:
             raise Exception("文件转换为PDF失败")
         
-        # 提取PDF内容
         pdf_content = extract_text_from_pdf(pdf_path)
         if not pdf_content:
             raise Exception("提取PDF内容失败")
         
-        # 提取商务评分标准信息
         result = extract_business_score(pdf_content)
-        
-        # 存储结果
         set_score_task_status(task_id, TaskStatus.SUCCESS)
         set_score_task_result(task_id, result)
         
@@ -441,7 +444,7 @@ def process_score_task(task):
         set_score_task_result(task_id, {
             "retCode": "9999",
             "retMessage": error_msg,
-            "scoreCriteria": []
+            "criteria": []  # 失败时返回空数组
         })
     finally:
         # 清理临时文件
@@ -452,7 +455,6 @@ def process_score_task(task):
             except Exception as e:
                 logger.warning(f"删除临时文件失败: {str(e)}")
         
-        # 清理PDF文件
         pdf_path = os.path.splitext(file_path)[0] + ".pdf"
         if os.path.exists(pdf_path):
             try:
@@ -461,7 +463,7 @@ def process_score_task(task):
             except Exception as e:
                 logger.warning(f"删除临时PDF文件失败: {str(e)}")
 
-# 原有消费者进程
+# 消费者进程（保持不变）
 def run_consumer():
     logger.info("招标信息任务消费者已启动，等待任务...")
     while True:
@@ -473,7 +475,6 @@ def run_consumer():
             logger.error(f"消费者处理出错: {str(e)}")
             time.sleep(5)
 
-# 新增商务评分标准消费者进程
 def run_score_consumer():
     logger.info("商务评分标准任务消费者已启动，等待任务...")
     while True:
@@ -488,13 +489,12 @@ def run_score_consumer():
 # FastAPI应用
 app = FastAPI(title="招标信息及商务评分提取服务")
 
-# 原有接口 - 提交招标信息处理任务
+# 原有接口（保持不变）
 @app.post("/api/base_tasks", summary="提交招标信息文件处理任务")
 async def create_task(
     bid: str = Form(..., description="投标编号"),
     file: UploadFile = File(..., description="待处理的文件")
 ):
-    # 验证文件类型
     file_ext = os.path.splitext(file.filename)[1].lower()
     if file_ext not in SUPPORTED_EXTENSIONS:
         raise HTTPException(
@@ -502,14 +502,12 @@ async def create_task(
             detail=f"不支持的文件类型，支持的类型: {SUPPORTED_EXTENSIONS}"
         )
     
-    # 保存文件到临时目录
     try:
         file_path = os.path.join(TEMP_DIR.name, f"{bid}_{file.filename}")
         with open(file_path, "wb") as f:
             content = await file.read()
             f.write(content)
         
-        # 创建任务
         task_id = generate_task_id()
         add_task_to_queue(task_id, bid, file_path)
         
@@ -525,10 +523,8 @@ async def create_task(
             content={"message": f"创建任务失败: {str(e)}"}
         )
 
-# 原有接口 - 查询招标信息结果
 @app.get("/api/base_results", summary="查询招标信息任务结果")
 async def get_result(bid: str):
-    """通过bid查询招标信息任务结果"""
     task_id = get_task_id_by_bid(bid)
     if not task_id:
         raise HTTPException(status_code=404, detail="未找到该bid对应的任务")
@@ -537,13 +533,11 @@ async def get_result(bid: str):
     if not status:
         raise HTTPException(status_code=404, detail="任务状态不存在")
     
-    # 任务成功时返回包含状态信息的完整结果
     if status == TaskStatus.SUCCESS.value:
         task_result = get_task_result(task_id)
         if task_result:
             return JSONResponse(task_result)
     
-    # 任务未完成或失败时返回统一格式的状态信息
     task_result = get_task_result(task_id) or {}
     return JSONResponse({
         "retCode": "0001" if status == TaskStatus.PROCESSING.value else "9999",
@@ -553,13 +547,12 @@ async def get_result(bid: str):
         "bidBond": {}
     })
 
-# 新增接口 - 提交商务评分标准处理任务（增加bid参数）
+# 优化后的商务评分接口
 @app.post("/api/business_score_tasks", summary="提交商务评分标准文件处理任务")
 async def create_score_task(
     bid: str = Form(..., description="投标编号"),
     file: UploadFile = File(..., description="待处理的文件")
 ):
-    # 验证文件类型
     file_ext = os.path.splitext(file.filename)[1].lower()
     if file_ext not in SUPPORTED_EXTENSIONS:
         raise HTTPException(
@@ -567,16 +560,13 @@ async def create_score_task(
             detail=f"不支持的文件类型，支持的类型: {SUPPORTED_EXTENSIONS}"
         )
     
-    # 保存文件到临时目录
     try:
-        # 生成唯一任务ID作为文件名前缀，同时包含bid便于追踪
         task_id = generate_task_id()
         file_path = os.path.join(TEMP_DIR.name, f"{bid}_{task_id}_{file.filename}")
         with open(file_path, "wb") as f:
             content = await file.read()
             f.write(content)
         
-        # 创建任务（增加bid参数）
         add_score_task_to_queue(task_id, bid, file_path)
         
         return JSONResponse({
@@ -591,11 +581,8 @@ async def create_score_task(
             content={"message": f"创建商务评分任务失败: {str(e)}"}
         )
 
-# 新增接口 - 查询商务评分标准结果（修改为通过bid查询）
 @app.get("/api/business_score_results", summary="查询商务评分标准任务结果")
 async def get_score_result(bid: str):
-    """通过bid查询商务评分标准任务结果"""
-    # 通过bid获取任务ID
     task_id = get_score_task_id_by_bid(bid)
     if not task_id:
         raise HTTPException(status_code=404, detail="未找到该bid对应的任务")
@@ -604,28 +591,23 @@ async def get_score_result(bid: str):
     if not status:
         raise HTTPException(status_code=404, detail="任务状态不存在")
     
-    # 任务成功时返回完整结果
     if status == TaskStatus.SUCCESS.value:
         task_result = get_score_task_result(task_id)
         if task_result:
             return JSONResponse(task_result)
     
-    # 任务未完成或失败时返回状态信息
     task_result = get_score_task_result(task_id) or {}
     return JSONResponse({
         "retCode": "0001" if status == TaskStatus.PROCESSING.value else "9999",
         "retMessage": "解析中" if status == TaskStatus.PROCESSING.value else task_result.get("retMessage", "解析失败"),
-        "scoreCriteria": []
+        "criteria": []
     })
 
 if __name__ == "__main__":
-    # 启动原有任务消费者进程
     consumer_process = Process(target=run_consumer, daemon=True)
     consumer_process.start()
     
-    # 启动商务评分标准任务消费者进程
     score_consumer_process = Process(target=run_score_consumer, daemon=True)
     score_consumer_process.start()
     
-    # 启动FastAPI服务
     uvicorn.run(app, host="0.0.0.0", port=8001)

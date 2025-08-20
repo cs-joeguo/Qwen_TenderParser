@@ -1,161 +1,404 @@
-2025-08-14 11:59:34,200 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 11:59:34,200 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 11:59:34,201 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 11:59:34,201 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 11:59:39,672 - tender_service - INFO - 接收到基础任务：fc2802f6-e71a-41d9-9135-d4e236ca97a6
-2025-08-14 11:59:39,673 - tender_service - INFO - 开始处理基础任务 fc2802f6-e71a-41d9-9135-d4e236ca97a6（bid: 123）
-2025-08-14 12:00:03,650 - tender_service - INFO - 已删除临时文件：/tmp/tender_j0g0lxcj/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 12:00:03,650 - tender_service - INFO - 已删除临时PDF：/tmp/tender_j0g0lxcj/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 14:07:15,090 - tender_service - INFO - 接收到评分任务：bb5b1b59-bb5b-4007-9b18-8c217641ae5e
-2025-08-14 14:07:15,091 - tender_service - INFO - 开始处理评分任务 bb5b1b59-bb5b-4007-9b18-8c217641ae5e（bid: 123）
-2025-08-14 14:07:18,200 - tender_service - ERROR - 商务评分提取失败：数据库结构文件不存在：tendering-struct.txt
-2025-08-14 14:07:18,200 - tender_service - ERROR - 评分任务 bb5b1b59-bb5b-4007-9b18-8c217641ae5e 处理失败：商务评分提取出错：数据库结构文件不存在：tendering-struct.txt
-2025-08-14 14:07:18,201 - tender_service - INFO - 已删除临时文件：/tmp/tender_j0g0lxcj/123_bb5b1b59-bb5b-4007-9b18-8c217641ae5e_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 14:07:18,201 - tender_service - INFO - 已删除临时PDF：/tmp/tender_j0g0lxcj/123_bb5b1b59-bb5b-4007-9b18-8c217641ae5e_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 14:09:52,175 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 14:09:52,175 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 14:09:52,176 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 14:09:52,177 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 14:09:56,985 - tender_service - INFO - 接收到评分任务：f432ed61-a545-45cc-a4d9-c4ef9ed1af75
-2025-08-14 14:09:56,986 - tender_service - INFO - 开始处理评分任务 f432ed61-a545-45cc-a4d9-c4ef9ed1af75（bid: 123）
-2025-08-14 14:10:20,684 - tender_service - INFO - 已删除临时文件：/tmp/tender_00cyhw4p/123_f432ed61-a545-45cc-a4d9-c4ef9ed1af75_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 14:10:20,685 - tender_service - INFO - 已删除临时PDF：/tmp/tender_00cyhw4p/123_f432ed61-a545-45cc-a4d9-c4ef9ed1af75_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 14:13:27,313 - tender_service - INFO - 接收到评分任务：df7d7939-2d19-423f-abe1-bfc6fccbda0b
-2025-08-14 14:13:27,314 - tender_service - INFO - 开始处理评分任务 df7d7939-2d19-423f-abe1-bfc6fccbda0b（bid: 123）
-2025-08-14 14:13:51,313 - tender_service - INFO - 已删除临时文件：/tmp/tender_00cyhw4p/123_df7d7939-2d19-423f-abe1-bfc6fccbda0b_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 14:13:51,313 - tender_service - INFO - 已删除临时PDF：/tmp/tender_00cyhw4p/123_df7d7939-2d19-423f-abe1-bfc6fccbda0b_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 14:14:39,332 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 14:14:39,332 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 14:14:39,333 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 14:14:39,333 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 14:14:47,061 - tender_service - INFO - 接收到评分任务：4f2d03f1-441f-443a-bf71-4c2947443042
-2025-08-14 14:14:47,062 - tender_service - INFO - 开始处理评分任务 4f2d03f1-441f-443a-bf71-4c2947443042（bid: 123）
-2025-08-14 14:15:01,715 - tender_service - INFO - 已删除临时文件：/tmp/tender_sacahfjm/123_4f2d03f1-441f-443a-bf71-4c2947443042_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 14:15:01,716 - tender_service - INFO - 已删除临时PDF：/tmp/tender_sacahfjm/123_4f2d03f1-441f-443a-bf71-4c2947443042_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 14:22:03,426 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 14:22:03,427 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 14:22:03,427 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 14:22:03,428 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 14:22:21,596 - tender_service - INFO - 接收到评分任务：aa909069-3633-4d43-b532-9a39d9f1df8e
-2025-08-14 14:22:21,597 - tender_service - INFO - 开始处理评分任务 aa909069-3633-4d43-b532-9a39d9f1df8e（bid: 123）
-2025-08-14 14:22:50,787 - tender_service - INFO - 已删除临时文件：/tmp/tender_4rdu3j2d/123_aa909069-3633-4d43-b532-9a39d9f1df8e_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 14:22:50,788 - tender_service - INFO - 已删除临时PDF：/tmp/tender_4rdu3j2d/123_aa909069-3633-4d43-b532-9a39d9f1df8e_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 14:29:29,215 - tender_service - INFO - 接收到评分任务：6b401c85-a809-40b5-b17c-84273bc927f1
-2025-08-14 14:29:29,215 - tender_service - INFO - 开始处理评分任务 6b401c85-a809-40b5-b17c-84273bc927f1（bid: 123）
-2025-08-14 14:29:45,420 - tender_service - INFO - 已删除临时文件：/tmp/tender_4rdu3j2d/123_6b401c85-a809-40b5-b17c-84273bc927f1_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 14:29:45,420 - tender_service - INFO - 已删除临时PDF：/tmp/tender_4rdu3j2d/123_6b401c85-a809-40b5-b17c-84273bc927f1_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:06:20,207 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:06:20,208 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:06:20,208 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:06:20,208 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:06:27,357 - tender_service - INFO - 接收到评分任务：3f5897ce-bf7b-4a24-8876-63fc43fba50f
-2025-08-14 15:06:27,358 - tender_service - INFO - 开始处理评分任务 3f5897ce-bf7b-4a24-8876-63fc43fba50f（bid: 123）
-2025-08-14 15:06:48,916 - tender_service - ERROR - 商务评分提取失败：Qwen处理失败：未知错误
-2025-08-14 15:06:48,917 - tender_service - ERROR - 评分任务 3f5897ce-bf7b-4a24-8876-63fc43fba50f 处理失败：商务评分提取出错：Qwen处理失败：未知错误
-2025-08-14 15:06:48,918 - tender_service - INFO - 已删除临时文件：/tmp/tender_vkn8l5py/123_3f5897ce-bf7b-4a24-8876-63fc43fba50f_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:06:48,919 - tender_service - INFO - 已删除临时PDF：/tmp/tender_vkn8l5py/123_3f5897ce-bf7b-4a24-8876-63fc43fba50f_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:07:38,906 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:07:38,906 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:07:38,906 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:07:38,907 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:07:43,892 - tender_service - INFO - 接收到评分任务：95b7acd5-0604-40f1-a220-d0c03224a42d
-2025-08-14 15:07:43,893 - tender_service - INFO - 开始处理评分任务 95b7acd5-0604-40f1-a220-d0c03224a42d（bid: 123）
-2025-08-14 15:08:00,558 - tender_service - INFO - Qwen处理结果：{'返回状态': {'retCode': '0000', 'retMessage': ''}, 'scoreCriteria': '商务评分标准共5分，其中业绩要求3分需提供近两年全国范围内物流投递类或仓储代发服务类项目总金额达50万元以上的合同及发票，按累计金额排名计算得分（第一名得满分，其余按10%递减，最低60%得分）。团队配置2分需满足至少6名项目成员（含负责人1名）、8名司机及30名投递人员要求，成员社保证明需体现2023年12月1日后缴纳记录。价格评分占50分采用基准价法，基准点为入围有效评审价格算术平均值除以0.95，评审价格与基准点偏差按比例扣分（多下浮1个点扣0.2分，少下浮1个点扣0.4分），异常报价（偏离度超50%）直接否决。履约能力评分包含车辆配置（2分）、投递人员数量（3分）、司机配备（3分）等指标，自有车辆需提供年审行驶证，租赁车辆需附加租赁合同。商业信誉未设定具体评分细则，但投标人须具备良好银行资信且不得存在诉讼仲裁影响履约能力。财务状况未设置专项评分，仅要求通过会计师事务所审计的财务报表体现资质，但未明确注册资本、净资产等具体评分依据。所有评分均需提供有效证明文件，否则不得分。'}
-2025-08-14 15:08:00,558 - tender_service - INFO - 已删除临时文件：/tmp/tender_0_5_s96v/123_95b7acd5-0604-40f1-a220-d0c03224a42d_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:08:00,559 - tender_service - INFO - 已删除临时PDF：/tmp/tender_0_5_s96v/123_95b7acd5-0604-40f1-a220-d0c03224a42d_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:11:09,918 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:11:09,918 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:11:09,919 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:11:09,919 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:11:16,678 - tender_service - INFO - 接收到评分任务：f5a29236-a079-40b8-915f-cae033d92ff1
-2025-08-14 15:11:16,679 - tender_service - INFO - 开始处理评分任务 f5a29236-a079-40b8-915f-cae033d92ff1（bid: 123）
-2025-08-14 15:11:35,141 - tender_service - ERROR - 商务评分提取失败：Qwen处理失败：未知错误
-2025-08-14 15:11:35,141 - tender_service - ERROR - 评分任务 f5a29236-a079-40b8-915f-cae033d92ff1 处理失败：商务评分提取出错：Qwen处理失败：未知错误
-2025-08-14 15:11:35,143 - tender_service - INFO - 已删除临时文件：/tmp/tender_s8k45f5u/123_f5a29236-a079-40b8-915f-cae033d92ff1_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:11:35,143 - tender_service - INFO - 已删除临时PDF：/tmp/tender_s8k45f5u/123_f5a29236-a079-40b8-915f-cae033d92ff1_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:12:30,532 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:12:30,532 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:12:30,533 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:12:30,534 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:12:34,989 - tender_service - INFO - 接收到评分任务：56e4f5c6-4bf0-4243-80c1-63755c6b6302
-2025-08-14 15:12:34,989 - tender_service - INFO - 开始处理评分任务 56e4f5c6-4bf0-4243-80c1-63755c6b6302（bid: 123）
-2025-08-14 15:12:58,711 - tender_service - ERROR - 商务评分提取失败：Qwen处理失败：未知错误
-2025-08-14 15:12:58,712 - tender_service - ERROR - 评分任务 56e4f5c6-4bf0-4243-80c1-63755c6b6302 处理失败：商务评分提取出错：Qwen处理失败：未知错误
-2025-08-14 15:12:58,712 - tender_service - INFO - 已删除临时文件：/tmp/tender_xw9o4qr6/123_56e4f5c6-4bf0-4243-80c1-63755c6b6302_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:12:58,712 - tender_service - INFO - 已删除临时PDF：/tmp/tender_xw9o4qr6/123_56e4f5c6-4bf0-4243-80c1-63755c6b6302_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:14:36,347 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:14:36,347 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:14:36,348 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:14:36,349 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:14:50,218 - tender_service - INFO - 接收到评分任务：3cb3219f-b4e8-476b-86bc-def3eb29684e
-2025-08-14 15:14:50,219 - tender_service - INFO - 开始处理评分任务 3cb3219f-b4e8-476b-86bc-def3eb29684e（bid: 123）
-2025-08-14 15:15:08,540 - tender_service - ERROR - 商务评分提取失败：Qwen处理失败：未知错误
-2025-08-14 15:15:08,541 - tender_service - ERROR - 评分任务 3cb3219f-b4e8-476b-86bc-def3eb29684e 处理失败：商务评分提取出错：Qwen处理失败：未知错误
-2025-08-14 15:15:08,541 - tender_service - INFO - 已删除临时文件：/tmp/tender_33pcth3q/123_3cb3219f-b4e8-476b-86bc-def3eb29684e_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:15:08,541 - tender_service - INFO - 已删除临时PDF：/tmp/tender_33pcth3q/123_3cb3219f-b4e8-476b-86bc-def3eb29684e_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:18:42,003 - tender_service - INFO - 接收到基础任务：7891a75b-6142-41c2-bee7-ddcc9fb48e88
-2025-08-14 15:18:42,004 - tender_service - INFO - 开始处理基础任务 7891a75b-6142-41c2-bee7-ddcc9fb48e88（bid: 123）
-2025-08-14 15:19:00,224 - tender_service - INFO - Qwen处理结果：{'返回状态': {'retCode': '0000', 'retMessage': ''}, 'projectInfo': {'projectCode': 'SZ-17-04A-2024-D-A12085', 'projectName': '2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购', 'customerName': '中国电信股份有限公司深圳分公司', 'bidOpenTime': '2024-07-03 09:30:00', 'bidDeadlineTime': '2024-07-03 09:30:00', 'bidAddress': '深圳市福田区益田路信息枢纽大厦', 'budgetAmount': '7854600.00'}, 'bidContactInfo': {'bidAgentOrg': '公诚管理咨询有限公司', 'agentContactPerson': '朱安娜', 'agentContactPhone': '17727802315,19925286367'}, 'bidBond': {'bondAccountNumber': '3110910037672412085', 'bondAccountName': '公诚管理咨询有限公司', 'bondAccountBranch': '中信银行广州花园支行', 'bondAmount': '22000.00', 'bondDeadlineTime': '2024-07-03 09:30:00'}}
-2025-08-14 15:19:00,225 - tender_service - ERROR - 基础信息提取失败：Qwen处理失败：未知错误
-2025-08-14 15:19:00,225 - tender_service - ERROR - 基础任务 7891a75b-6142-41c2-bee7-ddcc9fb48e88 处理失败：基础信息提取出错：Qwen处理失败：未知错误
-2025-08-14 15:19:00,227 - tender_service - INFO - 已删除临时文件：/tmp/tender_33pcth3q/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:19:00,228 - tender_service - INFO - 已删除临时PDF：/tmp/tender_33pcth3q/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:23:37,573 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:23:37,574 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:23:37,574 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:23:37,575 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:23:41,722 - tender_service - INFO - 接收到基础任务：fe13bea2-a5af-4f48-adc3-53f037c138bc
-2025-08-14 15:23:41,723 - tender_service - INFO - 开始处理基础任务 fe13bea2-a5af-4f48-adc3-53f037c138bc（bid: 123）
-2025-08-14 15:24:04,889 - tender_service - INFO - Qwen处理结果：{'返回状态': {'retCode': '0000', 'retMessage': ''}, 'projectInfo': {'projectCode': 'SZ-17-04A-2024-D-A12085', 'projectName': '2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购', 'customerName': '中国电信股份有限公司深圳分公司', 'bidOpenTime': '2024-07-03 09:30:00', 'bidDeadlineTime': '2024-07-03 09:30:00', 'bidAddress': '深圳市福田区益田路信息枢纽大厦', 'budgetAmount': '7854600.00'}, 'bidContactInfo': {'bidAgentOrg': '公诚管理咨询有限公司', 'agentContactPerson': '朱安娜', 'agentContactPhone': '17727802315'}, 'bidBond': {'bondAccountNumber': '3110910037672412085', 'bondAccountName': '公诚管理咨询有限公司', 'bondAccountBranch': '中信银行广州花园支行', 'bondAmount': '22000.00', 'bondDeadlineTime': '2024-07-03 09:30:00'}}
-2025-08-14 15:24:04,889 - tender_service - ERROR - 基础信息提取失败：Qwen处理失败：未知错误
-2025-08-14 15:24:04,889 - tender_service - ERROR - 基础任务 fe13bea2-a5af-4f48-adc3-53f037c138bc 处理失败：基础信息提取出错：Qwen处理失败：未知错误
-2025-08-14 15:24:04,891 - tender_service - INFO - 已删除临时文件：/tmp/tender_u9ot076p/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:24:04,892 - tender_service - INFO - 已删除临时PDF：/tmp/tender_u9ot076p/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:24:59,035 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:24:59,036 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:24:59,036 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:24:59,037 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:25:04,259 - tender_service - INFO - 接收到基础任务：f2b11c7c-87c8-49bd-9179-2c83fcfa484a
-2025-08-14 15:25:04,260 - tender_service - INFO - 开始处理基础任务 f2b11c7c-87c8-49bd-9179-2c83fcfa484a（bid: 123）
-2025-08-14 15:25:35,919 - tender_service - INFO - Qwen处理结果：{'返回状态': {'retCode': '0000', 'retMessage': ''}, 'projectInfo': {'projectCode': 'SZ-17-04A-2024-D-A12085', 'projectName': '2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购', 'customerName': '中国电信股份有限公司深圳分公司', 'bidOpenTime': '2024-07-03 09:30:00', 'bidDeadlineTime': '2024-07-03 09:30:00', 'bidAddress': '深圳市福田区益田路信息枢纽大厦', 'budgetAmount': '7410000.00'}, 'bidContactInfo': {'bidAgentOrg': '公诚管理咨询有限公司', 'agentContactPerson': '朱安娜', 'agentContactPhone': '17727802315'}, 'bidBond': {'bondAccountNumber': '3110910037672412085', 'bondAccountName': '公诚管理咨询有限公司', 'bondAccountBranch': '中信银行广州花园支行', 'bondAmount': '22000.00', 'bondDeadlineTime': '2024-07-03 09:30:00'}}
-2025-08-14 15:25:35,920 - tender_service - INFO - None
-2025-08-14 15:25:35,920 - tender_service - ERROR - 基础信息提取失败：Qwen处理失败：未知错误
-2025-08-14 15:25:35,920 - tender_service - ERROR - 基础任务 f2b11c7c-87c8-49bd-9179-2c83fcfa484a 处理失败：基础信息提取出错：Qwen处理失败：未知错误
-2025-08-14 15:25:35,922 - tender_service - INFO - 已删除临时文件：/tmp/tender_kfju06wb/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:25:35,922 - tender_service - INFO - 已删除临时PDF：/tmp/tender_kfju06wb/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:29:15,865 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:29:15,866 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:29:15,866 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:29:15,867 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:29:20,978 - tender_service - INFO - 接收到基础任务：d2cebfa0-beb4-46e7-b31b-bfa5626c8d8f
-2025-08-14 15:29:20,979 - tender_service - INFO - 开始处理基础任务 d2cebfa0-beb4-46e7-b31b-bfa5626c8d8f（bid: 123）
-2025-08-14 15:29:43,590 - tender_service - INFO - Qwen处理结果：{'返回状态': {'retCode': '0000', 'retMessage': ''}, 'projectInfo': {'projectCode': 'SZ-17-04A-2024-D-A12085', 'projectName': '2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购', 'customerName': '中国电信股份有限公司深圳分公司', 'bidOpenTime': '2024-07-03 09:30:00', 'bidDeadlineTime': '2024-07-03 09:30:00', 'bidAddress': '深圳市福田区益田路信息枢纽大厦', 'budgetAmount': '7410000.00'}, 'bidContactInfo': {'bidAgentOrg': '公诚管理咨询有限公司', 'agentContactPerson': '朱安娜、赖礼荣、李大伟、马姗姗、孙婉超、王烁林', 'agentContactPhone': '17727802315/19925286367'}, 'bidBond': {'bondAccountNumber': '3110910037672412085', 'bondAccountName': '公诚管理咨询有限公司', 'bondAccountBranch': '中信银行广州花园支行', 'bondAmount': '22000.00', 'bondDeadlineTime': '2024-07-03 09:30:00'}}
-2025-08-14 15:29:43,590 - tender_service - INFO - 0000
-2025-08-14 15:29:54,920 - tender_service - INFO - 已删除临时文件：/tmp/tender_0yizanz6/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:29:54,920 - tender_service - INFO - 已删除临时PDF：/tmp/tender_0yizanz6/123_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:32:20,276 - tender_service - INFO - 接收到评分任务：74e3bcd5-c18b-4bb9-ae70-50e366553377
-2025-08-14 15:32:20,277 - tender_service - INFO - 开始处理评分任务 74e3bcd5-c18b-4bb9-ae70-50e366553377（bid: 123）
-2025-08-14 15:32:38,427 - tender_service - ERROR - 商务评分提取失败：Qwen处理失败：未知错误
-2025-08-14 15:32:38,428 - tender_service - ERROR - 评分任务 74e3bcd5-c18b-4bb9-ae70-50e366553377 处理失败：商务评分提取出错：Qwen处理失败：未知错误
-2025-08-14 15:32:38,430 - tender_service - INFO - 已删除临时文件：/tmp/tender_0yizanz6/123_74e3bcd5-c18b-4bb9-ae70-50e366553377_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:32:38,430 - tender_service - INFO - 已删除临时PDF：/tmp/tender_0yizanz6/123_74e3bcd5-c18b-4bb9-ae70-50e366553377_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:34:45,198 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:34:45,199 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:34:45,199 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:34:45,199 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:34:59,625 - tender_service - INFO - 接收到评分任务：9ba5959b-1446-4390-87e1-34efdf3600a8
-2025-08-14 15:34:59,626 - tender_service - INFO - 开始处理评分任务 9ba5959b-1446-4390-87e1-34efdf3600a8（bid: 123）
-2025-08-14 15:35:20,998 - tender_service - INFO - Qwen处理结果：{'返回状态': {'retCode': '0000', 'retMessage': ''}, 'scoreCriteria': '本项目采用综合评估法进行商务评分，总分为100分，其中价格部分占50分，技术部分35分，服务部分10分，商务部分5分。价格评分以评审基准点（A2）为基础，基准点由入围有效评审价格下浮点数的算术平均值经修正后确定。投标报价与基准点的偏离度按公式计算，多下浮1个点扣0.2分，少下浮1个点扣0.4分，最低得分不低于0分，且所有数值保留小数点后两位。若投标人存在异常报价（偏离度超过50%），则按规则上浮评审价格并扣分。财务状况方面，资格审查要求投标人提供营业执照及银行资信证明，但招标文件未明确设定注册资本、净资产或盈利能力的量化评分标准。商业信誉评分则依据《中国电信供应商不良行为管理规则》，对存在不良记录的投标人扣减相应分值，同时要求投标文件无弄虚作假行为，否则作否决处理。履约能力评分主要考察投标人提供的同类项目业绩，需满足近两年全国范围内物流投递或仓储代发类项目累计金额不低于50万元，按业绩金额排名给予3分（第一名满分，其余每10%递减1分），并需提供合同关键页及发票等完整证明材料；项目团队要求至少配备6名成员（含1名负责人）、8名司机及30名投递人员，团队稳定性需承诺在服务期内不更换，且所有人员需提供社保证明及身份证件；车辆配置需至少2辆自有或租赁车辆（须提供行驶证及租赁合同），每增加1辆加0.5分，最高4分。投标文件格式需严格遵循招标文件要求，包含初步评审索引表、商务评审索引表等，任何不满足将按项扣分。服务部分要求投标人承诺投递妥投率、封装准确率等指标并提供承诺函，技术部分则涉及项目团队学历及管理方案的评分。最终推荐中标候选人时，综合得分相同的优先比较价格、技术、商务得分，若仍相同则由评标委员会投票决定。'}
-2025-08-14 15:35:20,998 - tender_service - INFO - 0000
-2025-08-14 15:35:20,998 - tender_service - INFO - 本项目采用综合评估法进行商务评分，总分为100分，其中价格部分占50分，技术部分35分，服务部分10分，商务部分5分。价格评分以评审基准点（A2）为基础，基准点由入围有效评审价格下浮点数的算术平均值经修正后确定。投标报价与基准点的偏离度按公式计算，多下浮1个点扣0.2分，少下浮1个点扣0.4分，最低得分不低于0分，且所有数值保留小数点后两位。若投标人存在异常报价（偏离度超过50%），则按规则上浮评审价格并扣分。财务状况方面，资格审查要求投标人提供营业执照及银行资信证明，但招标文件未明确设定注册资本、净资产或盈利能力的量化评分标准。商业信誉评分则依据《中国电信供应商不良行为管理规则》，对存在不良记录的投标人扣减相应分值，同时要求投标文件无弄虚作假行为，否则作否决处理。履约能力评分主要考察投标人提供的同类项目业绩，需满足近两年全国范围内物流投递或仓储代发类项目累计金额不低于50万元，按业绩金额排名给予3分（第一名满分，其余每10%递减1分），并需提供合同关键页及发票等完整证明材料；项目团队要求至少配备6名成员（含1名负责人）、8名司机及30名投递人员，团队稳定性需承诺在服务期内不更换，且所有人员需提供社保证明及身份证件；车辆配置需至少2辆自有或租赁车辆（须提供行驶证及租赁合同），每增加1辆加0.5分，最高4分。投标文件格式需严格遵循招标文件要求，包含初步评审索引表、商务评审索引表等，任何不满足将按项扣分。服务部分要求投标人承诺投递妥投率、封装准确率等指标并提供承诺函，技术部分则涉及项目团队学历及管理方案的评分。最终推荐中标候选人时，综合得分相同的优先比较价格、技术、商务得分，若仍相同则由评标委员会投票决定。
-2025-08-14 15:35:42,091 - tender_service - INFO - 已删除临时文件：/tmp/tender_5k6yrhpl/123_9ba5959b-1446-4390-87e1-34efdf3600a8_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:35:42,091 - tender_service - INFO - 已删除临时PDF：/tmp/tender_5k6yrhpl/123_9ba5959b-1446-4390-87e1-34efdf3600a8_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
-2025-08-14 15:36:09,292 - tender_service - INFO - 基础任务消费者进程启动
-2025-08-14 15:36:09,293 - tender_service - INFO - 基础任务消费者启动，等待任务...
-2025-08-14 15:36:09,293 - tender_service - INFO - 评分任务消费者进程启动
-2025-08-14 15:36:09,294 - tender_service - INFO - 评分任务消费者启动，等待任务...
-2025-08-14 15:36:13,230 - tender_service - INFO - 接收到评分任务：dd8c6d22-79f9-4c40-8a9c-f72dffee00fe
-2025-08-14 15:36:13,231 - tender_service - INFO - 开始处理评分任务 dd8c6d22-79f9-4c40-8a9c-f72dffee00fe（bid: 123）
-2025-08-14 15:36:31,548 - tender_service - INFO - 商务评分标准总分5分，包含同类项目业绩及投标文件编制质量两项。同类项目业绩按累计金额排名，第一名得3分，其余按10%递减，最低满足基本要求得1.8分。需提供合同关键页及发票复印件，框架合同需附订单或结算表及发票，金额及时间以发票为准。投标文件编制质量要求提供初步评审索引表及商务评审索引表，满足得2分，每不满足一项扣1分。价格评分占50分，以入围有效评审价格下浮点数的算术平均值除以0.95作为基准点，偏离基准点的报价按公式扣分：下浮点数高于基准点时，每多1点扣0.2分；低于基准点时，每少1点扣0.4分。异常报价（偏离度超50%）将被剔除，最终得分最低为0分。财务状况方面本项目不设置具体评分标准。商业信誉评分未明确细化规则，仅要求投标人具有良好的银行资信和商业信誉。履约能力评分包含项目团队配备、车辆配置及社保证明等，其中团队配备要求至少6名成员（含1名负责人），按学历及数量分段得分；车辆配置需满足2辆以上机动车要求，自有或租赁车辆均需提供有效行驶证及租赁合同，不足扣分。项目团队社保证明需体现2023年12月-2024年5月连续缴纳记录，每提供一名成员证明得0.5分，最高得2分。司机及投递人员需分别配备6名和30名，提供驾驶证及身份证扫描件，不足不得分。投标文件需承诺24小时内响应需求及驻点服务，否则扣分。所有评分项均需提供相应证明材料，否则不予认可。
-2025-08-14 15:36:56,658 - tender_service - INFO - 已删除临时文件：/tmp/tender_h_4226v7/123_dd8c6d22-79f9-4c40-8a9c-f72dffee00fe_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
-2025-08-14 15:36:56,658 - tender_service - INFO - 已删除临时PDF：/tmp/tender_h_4226v7/123_dd8c6d22-79f9-4c40-8a9c-f72dffee00fe_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-15 15:15:56,465 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-15 15:15:56,465 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-15 15:15:56,465 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-15 15:15:56,466 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:17:58,678 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:17:58,678 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:17:58,679 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:17:58,680 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:20:16,013 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:20:16,013 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:20:16,014 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:20:16,014 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:21:28,199 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:21:28,200 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:21:28,200 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:21:28,201 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:21:28,201 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:21:28,201 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:21:28,201 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:21:33,207 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:21:38,212 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:21:43,218 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:21:48,224 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:21:53,226 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:21:58,230 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:03,235 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:08,240 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:13,246 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:18,252 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:23,257 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:28,263 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:33,268 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:38,269 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:43,275 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:48,280 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:53,285 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:22:58,291 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:23:03,296 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:23:05,453 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:23:05,453 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:23:05,454 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:23:05,455 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:23:05,455 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:23:05,455 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:23:05,455 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:23:10,461 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:26:40,159 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:26:40,160 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:26:40,160 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:26:40,161 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:26:40,161 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:26:40,161 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:26:40,161 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:26:45,167 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:26:50,172 - tender_service - ERROR - 目录任务消费者异常：name 'CATALOGUE_TASK_QUEUE_KEY' is not defined
+2025-08-19 10:32:19,932 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:32:19,932 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:32:19,932 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:32:19,933 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:32:19,933 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:32:19,934 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:32:31,000 - tender_service - INFO - 接收到目录任务：d4ac68af-c9d3-4f5d-94f5-e940f8f8b7e5
+2025-08-19 10:32:31,001 - tender_service - INFO - 开始处理目录任务 d4ac68af-c9d3-4f5d-94f5-e940f8f8b7e5（bid: 123）
+2025-08-19 10:32:54,124 - tender_service - INFO - 已删除临时文件：/tmp/tender_l7m9x6nl/123_d4ac68af-c9d3-4f5d-94f5-e940f8f8b7e5_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 10:32:54,124 - tender_service - INFO - 已删除临时PDF：/tmp/tender_l7m9x6nl/123_d4ac68af-c9d3-4f5d-94f5-e940f8f8b7e5_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 10:38:45,977 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:38:45,978 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:38:45,979 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:38:45,979 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:38:45,979 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:38:45,980 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:39:04,865 - tender_service - INFO - 接收到目录任务：56e31459-dbe8-49c9-9cbc-0dd49833afe6
+2025-08-19 10:39:04,866 - tender_service - INFO - 开始处理目录任务 56e31459-dbe8-49c9-9cbc-0dd49833afe6（bid: 123）
+2025-08-19 10:39:08,106 - tender_service - ERROR - 目录提取失败：Invalid format specifier
+2025-08-19 10:39:08,106 - tender_service - ERROR - 目录任务 56e31459-dbe8-49c9-9cbc-0dd49833afe6 处理失败：目录提取出错：Invalid format specifier
+2025-08-19 10:39:08,107 - tender_service - INFO - 已删除临时文件：/tmp/tender_9eb47pmr/123_56e31459-dbe8-49c9-9cbc-0dd49833afe6_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 10:39:08,107 - tender_service - INFO - 已删除临时PDF：/tmp/tender_9eb47pmr/123_56e31459-dbe8-49c9-9cbc-0dd49833afe6_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 10:39:26,847 - tender_service - INFO - 接收到目录任务：600e94e9-7258-4c35-a014-9fdc82b7da95
+2025-08-19 10:39:26,847 - tender_service - INFO - 开始处理目录任务 600e94e9-7258-4c35-a014-9fdc82b7da95（bid: 123）
+2025-08-19 10:39:30,055 - tender_service - ERROR - 目录提取失败：Invalid format specifier
+2025-08-19 10:39:30,055 - tender_service - ERROR - 目录任务 600e94e9-7258-4c35-a014-9fdc82b7da95 处理失败：目录提取出错：Invalid format specifier
+2025-08-19 10:39:30,055 - tender_service - INFO - 已删除临时文件：/tmp/tender_9eb47pmr/123_600e94e9-7258-4c35-a014-9fdc82b7da95_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 10:39:30,056 - tender_service - INFO - 已删除临时PDF：/tmp/tender_9eb47pmr/123_600e94e9-7258-4c35-a014-9fdc82b7da95_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 10:44:28,523 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:44:28,523 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:44:28,524 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:44:28,524 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:44:28,524 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:44:28,525 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:44:37,929 - tender_service - INFO - 接收到目录任务：d155e69d-a8ea-4c76-8526-f737c2e468da
+2025-08-19 10:44:37,930 - tender_service - INFO - 开始处理目录任务 d155e69d-a8ea-4c76-8526-f737c2e468da（bid: 123）
+2025-08-19 10:45:11,227 - tender_service - ERROR - Qwen API请求失败：HTTPConnectionPool(host='192.168.230.29', port=8000): Read timed out. (read timeout=30)
+2025-08-19 10:45:11,227 - tender_service - ERROR - 目录任务 d155e69d-a8ea-4c76-8526-f737c2e468da 处理失败：Qwen API请求失败：HTTPConnectionPool(host='192.168.230.29', port=8000): Read timed out. (read timeout=30)
+2025-08-19 10:45:11,229 - tender_service - INFO - 已删除临时文件：/tmp/tender_6z9wcjsx/123_d155e69d-a8ea-4c76-8526-f737c2e468da_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 10:45:11,230 - tender_service - INFO - 已删除临时PDF：/tmp/tender_6z9wcjsx/123_d155e69d-a8ea-4c76-8526-f737c2e468da_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 10:48:03,586 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:48:03,587 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:48:03,587 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:48:03,588 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:48:03,588 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:48:03,589 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:48:09,947 - tender_service - INFO - 接收到目录任务：efa00e90-9169-47ff-9938-d849ca2c3ed6
+2025-08-19 10:48:09,948 - tender_service - INFO - 开始处理目录任务 efa00e90-9169-47ff-9938-d849ca2c3ed6（bid: 123）
+2025-08-19 10:48:36,437 - tender_service - INFO - 已删除临时文件：/tmp/tender_1dlxfna1/123_efa00e90-9169-47ff-9938-d849ca2c3ed6_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 10:48:36,438 - tender_service - INFO - 已删除临时PDF：/tmp/tender_1dlxfna1/123_efa00e90-9169-47ff-9938-d849ca2c3ed6_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 10:51:17,604 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:51:17,604 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:51:17,604 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:51:17,605 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:51:17,605 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:51:17,606 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:51:35,651 - tender_service - INFO - 接收到目录任务：d278cac4-2911-42c1-b2bc-31569cca692d
+2025-08-19 10:51:35,652 - tender_service - INFO - 开始处理目录任务 d278cac4-2911-42c1-b2bc-31569cca692d（bid: 123）
+2025-08-19 10:51:38,776 - tender_service - ERROR - 目录提取失败：name 'mapping_str' is not defined
+2025-08-19 10:51:38,776 - tender_service - ERROR - 目录任务 d278cac4-2911-42c1-b2bc-31569cca692d 处理失败：目录提取出错：name 'mapping_str' is not defined
+2025-08-19 10:51:38,776 - tender_service - INFO - 已删除临时文件：/tmp/tender_epfvn1v2/123_d278cac4-2911-42c1-b2bc-31569cca692d_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 10:51:38,776 - tender_service - INFO - 已删除临时PDF：/tmp/tender_epfvn1v2/123_d278cac4-2911-42c1-b2bc-31569cca692d_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 10:52:07,200 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:52:07,200 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:52:07,201 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:52:07,201 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:52:07,201 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:52:07,202 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:52:11,359 - tender_service - INFO - 接收到目录任务：10531e8b-a201-444a-93fa-6a55ce696979
+2025-08-19 10:52:11,360 - tender_service - INFO - 开始处理目录任务 10531e8b-a201-444a-93fa-6a55ce696979（bid: 123）
+2025-08-19 10:52:40,700 - tender_service - INFO - 已删除临时文件：/tmp/tender_kod4r0qw/123_10531e8b-a201-444a-93fa-6a55ce696979_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 10:52:40,701 - tender_service - INFO - 已删除临时PDF：/tmp/tender_kod4r0qw/123_10531e8b-a201-444a-93fa-6a55ce696979_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 10:56:44,454 - tender_service - INFO - 接收到目录任务：103b834d-fd8b-4cf1-a78f-036a94666c4c
+2025-08-19 10:56:44,455 - tender_service - INFO - 开始处理目录任务 103b834d-fd8b-4cf1-a78f-036a94666c4c（bid: 123）
+2025-08-19 10:57:27,776 - tender_service - INFO - 已删除临时文件：/tmp/tender_kod4r0qw/123_103b834d-fd8b-4cf1-a78f-036a94666c4c_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 10:57:27,776 - tender_service - INFO - 已删除临时PDF：/tmp/tender_kod4r0qw/123_103b834d-fd8b-4cf1-a78f-036a94666c4c_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 10:57:39,393 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 10:57:39,394 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 10:57:39,394 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 10:57:39,395 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 10:57:39,395 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 10:57:39,396 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 10:57:45,314 - tender_service - INFO - 接收到目录任务：7bb206ab-ffa5-4821-8ea0-042b7a559dd7
+2025-08-19 10:57:45,315 - tender_service - INFO - 开始处理目录任务 7bb206ab-ffa5-4821-8ea0-042b7a559dd7（bid: 123）
+2025-08-19 10:58:23,320 - tender_service - INFO - 已删除临时文件：/tmp/tender_97kfo8pp/123_7bb206ab-ffa5-4821-8ea0-042b7a559dd7_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 10:58:23,321 - tender_service - INFO - 已删除临时PDF：/tmp/tender_97kfo8pp/123_7bb206ab-ffa5-4821-8ea0-042b7a559dd7_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 11:05:44,147 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 11:05:44,147 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 11:05:44,148 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 11:05:44,149 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 11:05:44,149 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 11:05:44,149 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 11:05:51,502 - tender_service - INFO - 接收到目录任务：714e3ec7-7af0-404c-8ad9-e61b486170af
+2025-08-19 11:05:51,503 - tender_service - INFO - 开始处理目录任务 714e3ec7-7af0-404c-8ad9-e61b486170af（bid: 123）
+2025-08-19 11:07:00,325 - tender_service - INFO - 已删除临时文件：/tmp/tender_mm7lepms/123_714e3ec7-7af0-404c-8ad9-e61b486170af_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 11:07:00,326 - tender_service - INFO - 已删除临时PDF：/tmp/tender_mm7lepms/123_714e3ec7-7af0-404c-8ad9-e61b486170af_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 11:08:34,587 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 11:08:34,588 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 11:08:34,589 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 11:08:34,589 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 11:08:34,589 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 11:08:34,590 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 11:09:17,101 - tender_service - INFO - 接收到目录任务：b7ea6bb7-cb17-403f-833e-959fe69eabb2
+2025-08-19 11:09:17,102 - tender_service - INFO - 开始处理目录任务 b7ea6bb7-cb17-403f-833e-959fe69eabb2（bid: 123）
+2025-08-19 11:09:40,994 - tender_service - INFO - 已删除临时文件：/tmp/tender_n7andlkl/123_b7ea6bb7-cb17-403f-833e-959fe69eabb2_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 11:09:40,995 - tender_service - INFO - 已删除临时PDF：/tmp/tender_n7andlkl/123_b7ea6bb7-cb17-403f-833e-959fe69eabb2_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 11:14:03,939 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 11:14:03,939 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 11:14:03,940 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 11:14:03,941 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 11:14:03,941 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 11:14:03,941 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 11:14:11,712 - tender_service - INFO - 接收到目录任务：f33017d7-5c35-4d55-864d-35a046fbe638
+2025-08-19 11:14:11,713 - tender_service - INFO - 开始处理目录任务 f33017d7-5c35-4d55-864d-35a046fbe638（bid: 123）
+2025-08-19 11:14:45,734 - tender_service - INFO - 已删除临时文件：/tmp/tender_tdtqgfii/123_f33017d7-5c35-4d55-864d-35a046fbe638_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 11:14:45,735 - tender_service - INFO - 已删除临时PDF：/tmp/tender_tdtqgfii/123_f33017d7-5c35-4d55-864d-35a046fbe638_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 11:18:23,224 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 11:18:23,225 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 11:18:23,225 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 11:18:23,226 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 11:18:23,226 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 11:18:23,227 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 11:18:37,630 - tender_service - INFO - 接收到目录任务：01755825-d4ae-4781-b07c-5a1a83689a3f
+2025-08-19 11:18:37,631 - tender_service - INFO - 开始处理目录任务 01755825-d4ae-4781-b07c-5a1a83689a3f（bid: 123）
+2025-08-19 11:19:09,714 - tender_service - INFO - 已删除临时文件：/tmp/tender_m96vrvti/123_01755825-d4ae-4781-b07c-5a1a83689a3f_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 11:19:09,714 - tender_service - INFO - 已删除临时PDF：/tmp/tender_m96vrvti/123_01755825-d4ae-4781-b07c-5a1a83689a3f_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 11:54:17,634 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 11:54:17,635 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 11:54:17,635 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 11:54:17,636 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 11:54:17,636 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 11:54:17,636 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 11:54:25,882 - tender_service - INFO - 接收到目录任务：9c3a22e8-2df9-453f-a510-100fe0fb0a26
+2025-08-19 11:54:25,883 - tender_service - INFO - 开始处理目录任务 9c3a22e8-2df9-453f-a510-100fe0fb0a26（bid: 123）
+2025-08-19 11:55:12,141 - tender_service - INFO - 已删除临时文件：/tmp/tender_gifaeze5/123_9c3a22e8-2df9-453f-a510-100fe0fb0a26_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 11:55:12,141 - tender_service - INFO - 已删除临时PDF：/tmp/tender_gifaeze5/123_9c3a22e8-2df9-453f-a510-100fe0fb0a26_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:22:08,473 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:22:08,474 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:22:08,474 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:22:08,475 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:22:08,475 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:22:08,476 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:22:15,283 - tender_service - INFO - 接收到目录任务：bb2ebf74-f54e-41e2-94cb-0e666d83fcd8
+2025-08-19 15:22:15,284 - tender_service - INFO - 开始处理目录任务 bb2ebf74-f54e-41e2-94cb-0e666d83fcd8（bid: 123）
+2025-08-19 15:22:18,510 - tender_service - ERROR - 目录提取失败：Invalid format specifier
+2025-08-19 15:22:18,510 - tender_service - ERROR - 目录任务 bb2ebf74-f54e-41e2-94cb-0e666d83fcd8 处理失败：目录提取出错：Invalid format specifier
+2025-08-19 15:22:18,511 - tender_service - INFO - 已删除临时文件：/tmp/tender_9c22d15p/123_bb2ebf74-f54e-41e2-94cb-0e666d83fcd8_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 15:22:18,511 - tender_service - INFO - 已删除临时PDF：/tmp/tender_9c22d15p/123_bb2ebf74-f54e-41e2-94cb-0e666d83fcd8_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:24:48,786 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:24:48,786 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:24:48,787 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:24:48,787 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:24:48,787 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:24:48,788 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:24:55,280 - tender_service - INFO - 接收到目录任务：b6056a97-c378-4a4e-a093-d598bf2e3d0e
+2025-08-19 15:24:55,281 - tender_service - INFO - 开始处理目录任务 b6056a97-c378-4a4e-a093-d598bf2e3d0e（bid: 123）
+2025-08-19 15:25:17,005 - tender_service - INFO - 已删除临时文件：/tmp/tender_ti4yks_p/123_b6056a97-c378-4a4e-a093-d598bf2e3d0e_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 15:25:17,005 - tender_service - INFO - 已删除临时PDF：/tmp/tender_ti4yks_p/123_b6056a97-c378-4a4e-a093-d598bf2e3d0e_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:28:35,842 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:28:35,842 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:28:35,843 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:28:35,843 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:28:35,844 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:28:35,844 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:28:54,276 - tender_service - INFO - 接收到目录任务：11c9d378-ccdd-4f7a-a3e7-16289df9f3dc
+2025-08-19 15:28:54,277 - tender_service - INFO - 开始处理目录任务 11c9d378-ccdd-4f7a-a3e7-16289df9f3dc（bid: 123）
+2025-08-19 15:29:13,184 - tender_service - INFO - 已删除临时文件：/tmp/tender_xom4sx_a/123_11c9d378-ccdd-4f7a-a3e7-16289df9f3dc_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 15:29:13,184 - tender_service - INFO - 已删除临时PDF：/tmp/tender_xom4sx_a/123_11c9d378-ccdd-4f7a-a3e7-16289df9f3dc_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:32:37,403 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:32:37,404 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:32:37,404 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:32:37,405 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:32:37,405 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:32:37,406 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:32:43,758 - tender_service - INFO - 接收到目录任务：11566667-5ee8-4e79-9cae-19823e6d4990
+2025-08-19 15:32:43,759 - tender_service - INFO - 开始处理目录任务 11566667-5ee8-4e79-9cae-19823e6d4990（bid: 123）
+2025-08-19 15:33:06,027 - tender_service - INFO - 已删除临时文件：/tmp/tender_1lfy7vv9/123_11566667-5ee8-4e79-9cae-19823e6d4990_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 15:33:06,027 - tender_service - INFO - 已删除临时PDF：/tmp/tender_1lfy7vv9/123_11566667-5ee8-4e79-9cae-19823e6d4990_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:35:09,991 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:35:09,992 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:35:09,992 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:35:09,992 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:35:09,993 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:35:09,993 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:35:15,634 - tender_service - INFO - 接收到目录任务：cc5fc929-8bb0-4566-a947-b62b98534c97
+2025-08-19 15:35:15,635 - tender_service - INFO - 开始处理目录任务 cc5fc929-8bb0-4566-a947-b62b98534c97（bid: 123）
+2025-08-19 15:35:34,511 - tender_service - INFO - 已删除临时文件：/tmp/tender_55lgr5oz/123_cc5fc929-8bb0-4566-a947-b62b98534c97_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 15:35:34,511 - tender_service - INFO - 已删除临时PDF：/tmp/tender_55lgr5oz/123_cc5fc929-8bb0-4566-a947-b62b98534c97_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:38:05,513 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:38:05,513 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:38:05,514 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:38:05,514 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:38:05,514 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:38:05,515 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:38:23,212 - tender_service - INFO - 接收到目录任务：0cc6b046-798a-4f9d-8df8-327a762864de
+2025-08-19 15:38:23,212 - tender_service - INFO - 开始处理目录任务 0cc6b046-798a-4f9d-8df8-327a762864de（bid: 123）
+2025-08-19 15:39:02,701 - tender_service - INFO - 已删除临时文件：/tmp/tender_xk2mql4h/123_0cc6b046-798a-4f9d-8df8-327a762864de_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 15:39:02,701 - tender_service - INFO - 已删除临时PDF：/tmp/tender_xk2mql4h/123_0cc6b046-798a-4f9d-8df8-327a762864de_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:39:36,209 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:39:36,210 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:39:36,210 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:39:36,211 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:39:36,211 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:39:36,212 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:39:49,428 - tender_service - INFO - 接收到目录任务：9723fa30-1c73-415d-ae4b-17436a7b8e3e
+2025-08-19 15:39:49,429 - tender_service - INFO - 开始处理目录任务 9723fa30-1c73-415d-ae4b-17436a7b8e3e（bid: 123）
+2025-08-19 15:40:35,516 - tender_service - INFO - 已删除临时文件：/tmp/tender_2mc42ul3/123_9723fa30-1c73-415d-ae4b-17436a7b8e3e_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 15:40:35,517 - tender_service - INFO - 已删除临时PDF：/tmp/tender_2mc42ul3/123_9723fa30-1c73-415d-ae4b-17436a7b8e3e_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 15:52:34,617 - tender_service - INFO - 接收到目录任务：802c0bb6-08e7-4a90-9a56-7d1b4f6ab2d1
+2025-08-19 15:52:34,618 - tender_service - INFO - 开始处理目录任务 802c0bb6-08e7-4a90-9a56-7d1b4f6ab2d1（bid: 123）
+2025-08-19 15:52:58,243 - tender_service - INFO - 已删除临时文件：/tmp/tender_2mc42ul3/123_802c0bb6-08e7-4a90-9a56-7d1b4f6ab2d1_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 15:52:58,243 - tender_service - INFO - 已删除临时PDF：/tmp/tender_2mc42ul3/123_802c0bb6-08e7-4a90-9a56-7d1b4f6ab2d1_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 15:54:24,966 - tender_service - INFO - 接收到目录任务：b813da9e-b439-48f4-8656-075c29e07c78
+2025-08-19 15:54:24,967 - tender_service - INFO - 开始处理目录任务 b813da9e-b439-48f4-8656-075c29e07c78（bid: 123）
+2025-08-19 15:55:13,208 - tender_service - INFO - 已删除临时文件：/tmp/tender_2mc42ul3/123_b813da9e-b439-48f4-8656-075c29e07c78_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 15:55:13,208 - tender_service - INFO - 已删除临时PDF：/tmp/tender_2mc42ul3/123_b813da9e-b439-48f4-8656-075c29e07c78_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 15:57:33,788 - tender_service - INFO - 接收到目录任务：d834c923-2cf9-4a2a-99fe-697f25ed6ff4
+2025-08-19 15:57:33,788 - tender_service - INFO - 开始处理目录任务 d834c923-2cf9-4a2a-99fe-697f25ed6ff4（bid: 123）
+2025-08-19 15:58:05,716 - tender_service - INFO - 已删除临时文件：/tmp/tender_2mc42ul3/123_d834c923-2cf9-4a2a-99fe-697f25ed6ff4_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 15:58:05,717 - tender_service - INFO - 已删除临时PDF：/tmp/tender_2mc42ul3/123_d834c923-2cf9-4a2a-99fe-697f25ed6ff4_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 15:59:17,462 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 15:59:17,463 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 15:59:17,463 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 15:59:17,464 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 15:59:17,464 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 15:59:17,464 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 15:59:26,517 - tender_service - INFO - 接收到目录任务：604c0578-18af-436b-b9cc-2cdd8c47b1ec
+2025-08-19 15:59:26,518 - tender_service - INFO - 开始处理目录任务 604c0578-18af-436b-b9cc-2cdd8c47b1ec（bid: 123）
+2025-08-19 16:00:03,248 - tender_service - INFO - 已删除临时文件：/tmp/tender_urdcke67/123_604c0578-18af-436b-b9cc-2cdd8c47b1ec_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:00:03,249 - tender_service - INFO - 已删除临时PDF：/tmp/tender_urdcke67/123_604c0578-18af-436b-b9cc-2cdd8c47b1ec_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 16:02:38,653 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 16:02:38,654 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 16:02:38,654 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 16:02:38,655 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 16:02:38,655 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 16:02:38,656 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 16:02:51,693 - tender_service - INFO - 接收到目录任务：11355295-cca8-4f9a-a612-52225fbbd224
+2025-08-19 16:02:51,694 - tender_service - INFO - 开始处理目录任务 11355295-cca8-4f9a-a612-52225fbbd224（bid: 123）
+2025-08-19 16:03:11,418 - tender_service - INFO - 已删除临时文件：/tmp/tender_df4wgi2j/123_11355295-cca8-4f9a-a612-52225fbbd224_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:03:11,418 - tender_service - INFO - 已删除临时PDF：/tmp/tender_df4wgi2j/123_11355295-cca8-4f9a-a612-52225fbbd224_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 16:04:18,156 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 16:04:18,156 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 16:04:18,157 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 16:04:18,157 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 16:04:18,157 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 16:04:18,158 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 16:04:26,925 - tender_service - INFO - 接收到目录任务：e64b84f8-d024-4ad7-b8a9-3ca5c604a138
+2025-08-19 16:04:26,926 - tender_service - INFO - 开始处理目录任务 e64b84f8-d024-4ad7-b8a9-3ca5c604a138（bid: 123）
+2025-08-19 16:04:50,183 - tender_service - INFO - 已删除临时文件：/tmp/tender_u6c9_hv0/123_e64b84f8-d024-4ad7-b8a9-3ca5c604a138_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:04:50,183 - tender_service - INFO - 已删除临时PDF：/tmp/tender_u6c9_hv0/123_e64b84f8-d024-4ad7-b8a9-3ca5c604a138_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 16:08:32,746 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 16:08:32,747 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 16:08:32,747 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 16:08:32,748 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 16:08:32,748 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 16:08:32,749 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 16:08:38,973 - tender_service - INFO - 接收到目录任务：ddf6f320-e9ea-4333-b13a-c9ef98c151ef
+2025-08-19 16:08:38,974 - tender_service - INFO - 开始处理目录任务 ddf6f320-e9ea-4333-b13a-c9ef98c151ef（bid: 123）
+2025-08-19 16:08:57,434 - tender_service - INFO - 已删除临时文件：/tmp/tender_gahajh_8/123_ddf6f320-e9ea-4333-b13a-c9ef98c151ef_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:08:57,434 - tender_service - INFO - 已删除临时PDF：/tmp/tender_gahajh_8/123_ddf6f320-e9ea-4333-b13a-c9ef98c151ef_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 16:20:02,512 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 16:20:02,512 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 16:20:02,513 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 16:20:02,513 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 16:20:02,513 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 16:20:02,514 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 16:20:14,874 - tender_service - INFO - 接收到目录任务：eda834b3-4e47-4625-ae20-2a2d5991bced
+2025-08-19 16:20:14,875 - tender_service - INFO - 开始处理目录任务 eda834b3-4e47-4625-ae20-2a2d5991bced（bid: 123）
+2025-08-19 16:21:02,487 - tender_service - INFO - 已删除临时文件：/tmp/tender_idqbnq61/123_eda834b3-4e47-4625-ae20-2a2d5991bced_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:21:02,488 - tender_service - INFO - 已删除临时PDF：/tmp/tender_idqbnq61/123_eda834b3-4e47-4625-ae20-2a2d5991bced_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 16:23:03,288 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 16:23:03,288 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 16:23:03,289 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 16:23:03,289 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 16:23:03,290 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 16:23:03,290 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 16:23:10,005 - tender_service - INFO - 接收到目录任务：3c231196-d354-419e-b947-628768516cff
+2025-08-19 16:23:10,005 - tender_service - INFO - 开始处理目录任务 3c231196-d354-419e-b947-628768516cff（bid: 123）
+2025-08-19 16:23:29,397 - tender_service - INFO - 已删除临时文件：/tmp/tender_f0sqmwmh/123_3c231196-d354-419e-b947-628768516cff_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:23:29,398 - tender_service - INFO - 已删除临时PDF：/tmp/tender_f0sqmwmh/123_3c231196-d354-419e-b947-628768516cff_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 16:29:00,094 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-19 16:29:00,095 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-19 16:29:00,095 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-19 16:29:00,096 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-19 16:29:00,096 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-19 16:29:00,097 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-19 16:29:05,069 - tender_service - INFO - 接收到目录任务：d1494d2d-1907-4e96-8084-eb311298c5e6
+2025-08-19 16:29:05,070 - tender_service - INFO - 开始处理目录任务 d1494d2d-1907-4e96-8084-eb311298c5e6（bid: 123）
+2025-08-19 16:29:28,431 - tender_service - INFO - 已删除临时文件：/tmp/tender_cbny80py/123_d1494d2d-1907-4e96-8084-eb311298c5e6_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:29:28,432 - tender_service - INFO - 已删除临时PDF：/tmp/tender_cbny80py/123_d1494d2d-1907-4e96-8084-eb311298c5e6_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-19 16:36:16,003 - tender_service - INFO - 接收到目录任务：fdc84631-dce4-4953-a741-b91b8913d56d
+2025-08-19 16:36:16,004 - tender_service - INFO - 开始处理目录任务 fdc84631-dce4-4953-a741-b91b8913d56d（bid: 123）
+2025-08-19 16:36:38,280 - tender_service - INFO - 已删除临时文件：/tmp/tender_cbny80py/123_fdc84631-dce4-4953-a741-b91b8913d56d_2025-2026年度上海联通采购代理服务商采购项目比选文件.docx
+2025-08-19 16:36:38,280 - tender_service - INFO - 已删除临时PDF：/tmp/tender_cbny80py/123_fdc84631-dce4-4953-a741-b91b8913d56d_2025-2026年度上海联通采购代理服务商采购项目比选文件.pdf
+2025-08-19 16:46:50,949 - tender_service - INFO - 接收到目录任务：af13d5fe-c52f-4828-ab40-ce288bca4c37
+2025-08-19 16:46:50,950 - tender_service - INFO - 开始处理目录任务 af13d5fe-c52f-4828-ab40-ce288bca4c37（bid: 123）
+2025-08-19 16:47:56,246 - tender_service - INFO - 已删除临时文件：/tmp/tender_cbny80py/123_af13d5fe-c52f-4828-ab40-ce288bca4c37_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.docx
+2025-08-19 16:47:56,246 - tender_service - INFO - 已删除临时PDF：/tmp/tender_cbny80py/123_af13d5fe-c52f-4828-ab40-ce288bca4c37_招标文件-2024-2025年深圳电信数字化营销中心业务发展第二批物流支撑服务框架采购-20240531.pdf
+2025-08-20 09:41:32,488 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 09:41:32,489 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 09:41:32,489 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 09:41:32,490 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 09:41:32,490 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 09:41:32,491 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-20 09:49:15,591 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 09:49:15,591 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 09:49:15,592 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 09:49:15,592 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 09:49:15,592 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 09:49:15,593 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-20 10:37:43,211 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 10:37:43,212 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 10:37:43,213 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 10:37:43,214 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 10:37:43,214 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 10:37:43,214 - tender_service - ERROR - 基础任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:43,216 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-20 10:37:43,216 - tender_service - ERROR - 评分任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:43,218 - tender_service - ERROR - 目录任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:48,220 - tender_service - ERROR - 基础任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:48,222 - tender_service - ERROR - 评分任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:48,224 - tender_service - ERROR - 目录任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:53,226 - tender_service - ERROR - 基础任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:53,228 - tender_service - ERROR - 评分任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:37:53,230 - tender_service - ERROR - 目录任务消费者异常：Error 111 connecting to localhost:16379. Connection refused.
+2025-08-20 10:40:46,762 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 10:40:46,763 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 10:40:46,763 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 10:40:46,764 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 10:40:46,765 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 10:40:46,766 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-20 11:29:09,752 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 11:29:09,753 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 11:29:09,753 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 11:29:09,754 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 11:29:09,755 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 11:29:09,756 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-20 11:33:12,231 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 11:33:12,233 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 11:33:12,233 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 11:33:12,234 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 11:33:12,235 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 11:33:12,236 - tender_service - INFO - 目录任务消费者启动，等待任务...
+2025-08-20 14:45:38,439 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 14:45:38,440 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 14:45:38,440 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 14:45:38,441 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 14:45:38,442 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 14:45:38,443 - tender_service - INFO - 目录任务消费者启动，等待任务...

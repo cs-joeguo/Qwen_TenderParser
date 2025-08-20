@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''商务评分标准任务处理逻辑'''
 import time
 from config import logger, TaskStatus

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''基础招标信息任务处理逻辑'''
 import time
 from config import logger, TaskStatus

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''商务评分标准任务API路由'''
 import os
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException

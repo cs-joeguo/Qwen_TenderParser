@@ -1,0 +1,15 @@
+/home/zjtx/.local/lib/python3.7/site-packages/redis/utils.py:25: CryptographyDeprecationWarning: Python 3.7 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.7.
+  import cryptography  # noqa
+2025-08-20 14:45:38,439 - tender_service - INFO - 基础任务消费者进程启动
+2025-08-20 14:45:38,440 - tender_service - INFO - 基础任务消费者启动，等待任务...
+2025-08-20 14:45:38,440 - tender_service - INFO - 评分任务消费者进程启动
+2025-08-20 14:45:38,441 - tender_service - INFO - 评分任务消费者启动，等待任务...
+2025-08-20 14:45:38,442 - tender_service - INFO - 目录任务消费者进程启动
+2025-08-20 14:45:38,443 - tender_service - INFO - 目录任务消费者启动，等待任务...
+INFO:     Started server process [385775]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     10.218.11.111:56174 - "GET /api/business_score_results?bid=bdd27154ee0e4a138acede638fadc1d9 HTTP/1.0" 200 OK
+INFO:     10.218.11.111:46434 - "POST /api/business_score_tasks HTTP/1.0" 200 OK
+INFO:     10.218.11.111:51226 - "GET /api/business_score_results?bid=bdd27154ee0e4a138acede638fadc1d9 HTTP/1.0" 200 OK

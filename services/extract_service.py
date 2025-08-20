@@ -9,6 +9,7 @@ class ExtractService:
     @staticmethod
     def extract_base_info(pdf_content: str) -> dict:
         """提取基础招标信息（优化版：先经Qwen处理PDF内容）"""
+        logger.info("开始提取基础招标信息")
         try:
             # 1. 调用Qwen预处理PDF内容
             qwen_payload = {
@@ -61,6 +62,7 @@ class ExtractService:
             qwen_response.raise_for_status()
             
             # 解析Qwen返回结果
+            logger.info("Qwen处理PDF内容成功，开始解析结果")
             qwen_result = qwen_response.json()["choices"][0]["message"]["content"].strip()
             qwen_result = qwen_result.replace("```json", "").replace("```", "").strip()
             processed_content = json.loads(qwen_result)

@@ -1,3 +1,11 @@
+'''
+Descripttion: 
+Author: Joe Guo
+version: 
+Date: 2025-08-20 09:51:41
+LastEditors: Joe Guo
+LastEditTime: 2025-08-21 15:07:23
+'''
 # -*- coding: utf-8 -*-
 '''商务评分标准任务API路由'''
 import os
@@ -13,6 +21,16 @@ async def create_score_task(
     bid: str = Form(..., description="投标编号"),
     file: UploadFile = File(..., description="待处理文件")
 ):
+    
+    existing_task_id = redis_service.get_score_task_id_by_bid(bid)
+    if existing_task_id:
+        existing_status = redis_service.get_score_task_status(existing_task_id)
+        if existing_status in [TaskStatus.PENDING.value, TaskStatus.PROCESSING.value]:
+            raise HTTPException(
+                status_code=400,
+                detail=f"该投标编号（{bid}）已有任务在处理中（任务ID: {existing_task_id}），请稍后再试"
+            )
+    
     # 校验文件类型
     file_ext = os.path.splitext(file.filename)[1].lower()
     if file_ext not in SUPPORTED_EXTENSIONS:

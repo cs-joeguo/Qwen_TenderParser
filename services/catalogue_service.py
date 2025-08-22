@@ -1,12 +1,13 @@
+# -*- coding: utf-8 -*-
 '''
 Descripttion: 
 Author: Joe Guo
 version: 
 Date: 2025-08-20 09:51:48
 LastEditors: Joe Guo
-LastEditTime: 2025-08-20 15:20:50
+LastEditTime: 2025-08-20 17:45:57
 '''
-# -*- coding: utf-8 -*-
+
 """目录筛选与结构化服务（基于Qwen预处理）"""
 import json
 import uuid

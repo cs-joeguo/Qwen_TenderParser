@@ -3,15 +3,53 @@
 import os
 import json
 import requests
-from config import logger, EXTRACT_API_URL, DB_STRUCT_PATH, EXTRACT_API_URL
+import re
+from json import JSONDecodeError
+from config import EXTRACT_API_URL, DB_STRUCT_PATH, EXTRACT_API_URL
+# 在文件顶部导入logging模块（如果已有则忽略）
+import logging
+from logging.handlers import RotatingFileHandler
+
+# 在类定义之前添加日志配置
+# 确保日志目录存在
+log_dir = "logs"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+# 配置日志格式
+log_format = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+# 设置日志文件（按大小切割，最多保留5个备份）
+log_file = os.path.join(log_dir, "extract_service.log")
+file_handler = RotatingFileHandler(
+    log_file,
+    maxBytes=1024 * 1024 * 5,  # 5MB
+    backupCount=5,
+    encoding='utf-8'
+)
+file_handler.setFormatter(log_format)
+file_handler.setLevel(logging.INFO)
+
+# 获取logger并添加处理器
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(file_handler)
+
+# 如果需要同时在控制台输出日志，可以添加StreamHandler
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_format)
+logger.addHandler(console_handler)
 
 class ExtractService:
     @staticmethod
     def extract_base_info(pdf_content: str) -> dict:
         """提取基础招标信息（优化版：先经Qwen处理PDF内容）"""
-        logger.info("开始提取基础招标信息")
+        logger.info("=== 开始执行基础招标信息提取流程 ===")
         try:
             # 1. 调用Qwen预处理PDF内容
+            logger.info("准备调用Qwen API进行PDF内容预处理")
             qwen_payload = {
                 "messages": [
                     {
@@ -58,21 +96,42 @@ class ExtractService:
             }
             
             qwen_headers = {"Content-Type": "application/json"}
+            logger.info(f"向Qwen API发送请求，URL: {EXTRACT_API_URL}")
             qwen_response = requests.post(EXTRACT_API_URL, headers=qwen_headers, data=json.dumps(qwen_payload))
             qwen_response.raise_for_status()
+            logger.info("Qwen API请求成功，状态码: %d", qwen_response.status_code)
             
             # 解析Qwen返回结果
-            logger.info("Qwen处理PDF内容成功，开始解析结果")
+            logger.info("开始解析Qwen返回结果")
             qwen_result = qwen_response.json()["choices"][0]["message"]["content"].strip()
             qwen_result = qwen_result.replace("```json", "").replace("```", "").strip()
-            processed_content = json.loads(qwen_result)
+            # processed_content = json.loads(qwen_result)
+            # 新增：用正则提取首个完整JSON对象（处理多余内容）
+            json_pattern = r'\{.*\}'  # 匹配最外层的{}包裹的内容
+            match = re.search(json_pattern, qwen_result, re.DOTALL)  # re.DOTALL让.匹配换行符
+            if not match:
+                raise Exception("Qwen返回结果中未找到有效的JSON内容")
+            cleaned_json_str = match.group(0)
 
-            
-            # if processed_content.get("retCode") != "0000":
-            if processed_content.get("返回状态", {}).get("retCode") != "0000":
-                raise Exception(f"Qwen处理失败：{processed_content.get('retMessage', '未知错误')}")
+            # 新增：尝试解析并捕获错误
+            try:
+                processed_content = json.loads(cleaned_json_str)
+            except JSONDecodeError as e:
+                # 输出错误详情和原始内容，方便调试
+                logger.error(f"Qwen返回JSON解析失败：{str(e)}，原始内容：{cleaned_json_str[:500]}...")
+                raise Exception(f"Qwen返回结果格式错误：{str(e)}")
+            logger.info("Qwen返回结果解析完成，获取预处理数据")
+
+            # 检查Qwen处理状态
+            ret_code = processed_content.get("返回状态", {}).get("retCode")
+            logger.info(f"Qwen处理状态码: {ret_code}")
+            if ret_code != "0000":
+                error_msg = processed_content.get("retMessage", "未知错误")
+                logger.error(f"Qwen处理失败，错误信息: {error_msg}")
+                raise Exception(f"Qwen处理失败：{error_msg}")
             
             # 2. 使用处理后的内容调用提取API
+            logger.info("准备调用提取API进行二次处理")
             payload = {
                 "messages": [
                     {
@@ -95,31 +154,41 @@ class ExtractService:
             }
             
             headers = {"Content-Type": "application/json"}
+            logger.info(f"向提取API发送请求，URL: {EXTRACT_API_URL}")
             response = requests.post(EXTRACT_API_URL, headers=headers, data=json.dumps(payload))
             response.raise_for_status()
+            logger.info("提取API请求成功，状态码: %d", response.status_code)
             
             # 解析最终响应
+            logger.info("开始解析提取API返回结果")
             core_content = response.json()["choices"][0]["message"]["content"].strip()
             core_content = core_content.replace("```json", "").replace("```", "").strip()
             extracted_data = json.loads(core_content)
+            logger.info("提取API返回结果解析完成")
             
-            return {
+            result = {
                 "retCode": extracted_data.get("retCode", "0000"),
                 "retMessage": extracted_data.get("retMessage", "解析成功"),
                 "projectInfo": extracted_data.get("projectInfo", {}),
                 "bidContactInfo": extracted_data.get("bidContactInfo", {}),
                 "bidBond": extracted_data.get("bidBond", {})
             }
+            logger.info(f"基础招标信息提取完成，返回状态: {result['retCode']}")
+            return result
             
         except Exception as e:
-            logger.error(f"基础信息提取失败：{str(e)}")
+            logger.error(f"基础信息提取失败：{str(e)}", exc_info=True)
             raise Exception(f"基础信息提取出错：{e}")
+        finally:
+            logger.info("=== 基础招标信息提取流程结束 ===")
     
     @staticmethod
     def extract_business_score(pdf_content: str) -> dict:
         """提取商务评分标准（优化版：先经Qwen处理PDF内容）"""
+        logger.info("=== 开始执行商务评分标准提取流程 ===")
         try:
             # 1. 调用Qwen预处理PDF内容
+            logger.info("准备调用Qwen API进行商务评分内容预处理")
             qwen_payload = {
                 "messages": [
                     {
@@ -156,20 +225,45 @@ class ExtractService:
             }
             
             qwen_headers = {"Content-Type": "application/json"}
+            logger.info(f"向Qwen API发送请求，URL: {EXTRACT_API_URL}")
             qwen_response = requests.post(EXTRACT_API_URL, headers=qwen_headers, data=json.dumps(qwen_payload))
             qwen_response.raise_for_status()
+            logger.info("Qwen API请求成功，状态码: %d", qwen_response.status_code)
             
             # 解析Qwen返回结果
+            logger.info("开始解析Qwen返回结果")
             qwen_result = qwen_response.json()["choices"][0]["message"]["content"].strip()
             qwen_result = qwen_result.replace("```json", "").replace("```", "").strip()
-            processed_content = json.loads(qwen_result)
-            if processed_content.get("返回状态", {}).get("retCode") != "0000":
-                raise Exception(f"Qwen处理失败：{processed_content.get('retMessage', '未知错误')}")
+            # processed_content = json.loads(qwen_result)
+            # 新增：用正则提取首个完整JSON对象（处理多余内容）
+            json_pattern = r'\{.*\}'  # 匹配最外层的{}包裹的内容
+            match = re.search(json_pattern, qwen_result, re.DOTALL)  # re.DOTALL让.匹配换行符
+            if not match:
+                raise Exception("Qwen返回结果中未找到有效的JSON内容")
+            cleaned_json_str = match.group(0)
+
+            # 新增：尝试解析并捕获错误
+            try:
+                processed_content = json.loads(cleaned_json_str)
+            except JSONDecodeError as e:
+                # 输出错误详情和原始内容，方便调试
+                logger.error(f"Qwen返回JSON解析失败：{str(e)}，原始内容：{cleaned_json_str[:500]}...")
+                raise Exception(f"Qwen返回结果格式错误：{str(e)}")
+            
+            # 检查Qwen处理状态
+            ret_code = processed_content.get("返回状态", {}).get("retCode")
+            logger.info(f"Qwen处理状态码: {ret_code}")
+            if ret_code != "0000":
+                error_msg = processed_content.get("retMessage", "未知错误")
+                logger.error(f"Qwen处理失败，错误信息: {error_msg}")
+                raise Exception(f"Qwen处理失败：{error_msg}")
             
             refined_pdf_content = processed_content.get("scoreCriteria", "")
+            logger.info(f"获取预处理后的评分标准内容，长度: {len(refined_pdf_content)}字符")
 
 
             # 2. 使用处理后的内容调用提取API
+            logger.info("准备调用提取API进行商务评分标准提取")
             example_json = '''{
                                 "retCode": "0000",
                                 "retMessage": "解析成功",
@@ -177,7 +271,7 @@ class ExtractService:
                                     {
                                     "itemName": "比较合同签订时间在投标（报价）截止时间前三年以内（截止时间前三个月内不计）的主要产品（智能交互屏、录播设备、虚拟化服务器集群）的销售业绩，按销售金额计算。项目合同金额大于400万 ",
                                     "score": 15,
-                                    "itemTag": "项目业绩",
+                                    "itemName": "项目业绩",
                                     "quantity": 8,
                                     "TagCondition": [
                                         {
@@ -200,7 +294,7 @@ class ExtractService:
                                     {
                                     "itemName": "涉及国家秘密的计算机信息系统集成资质乙级（含乙级）以上资质、ISO9001、ISO270001",
                                     "score": 10,
-                                    "itemTag": "公司资质",
+                                    "itemName": "公司资质",
                                     "TagCondition": [
                                         {
                                         "fieldName": "projectName",
@@ -212,7 +306,7 @@ class ExtractService:
                                     {
                                     "itemName": "团队人员要求5人，研究生、具备高级工程师、网络工程师证书、PMP证书",
                                     "score": 10,
-                                    "itemTag": "人员要求",
+                                    "itemName": "人员要求",
                                     "quantity": 5,
                                     "TagCondition": [
                                         {
@@ -225,10 +319,17 @@ class ExtractService:
                                 ]
                                 }'''
             
+            # 检查数据库结构文件
+            logger.info(f"检查数据库结构文件是否存在: {DB_STRUCT_PATH}")
             if not os.path.exists(DB_STRUCT_PATH):
+                logger.error(f"数据库结构文件不存在: {DB_STRUCT_PATH}")
                 raise Exception(f"数据库结构文件不存在：{DB_STRUCT_PATH}")
+            
+            # 读取数据库结构文件
+            logger.info("读取数据库结构文件内容")
             with open(DB_STRUCT_PATH, "r", encoding="utf-8") as f:
                 db_struct = f.read()
+            logger.info(f"数据库结构文件读取完成，内容长度: {len(db_struct)}字符")
             
             payload = {
                 "messages": [
@@ -263,37 +364,51 @@ class ExtractService:
             }
             
             headers = {"Content-Type": "application/json"}
+            logger.info(f"向提取API发送请求，URL: {EXTRACT_API_URL}")
             response = requests.post(EXTRACT_API_URL, headers=headers, data=json.dumps(payload))
             response.raise_for_status()
+            logger.info("提取API请求成功，状态码: %d", response.status_code)
             
             # 解析最终响应
+            logger.info("开始解析提取API返回结果")
             core_content = response.json()["choices"][0]["message"]["content"].strip()
             core_content = core_content.replace("```json", "").replace("```", "").strip()
             extracted_data = json.loads(core_content)
+            logger.info("提取API返回结果解析完成")
             
             # 结构校验
+            logger.info("对提取结果进行结构校验和修正")
             if "criteria" not in extracted_data:
                 extracted_data["criteria"] = []
-            for item in extracted_data["criteria"]:
+                logger.info("提取结果中未包含criteria字段，已自动补充为空数组")
+            
+            for i, item in enumerate(extracted_data["criteria"]):
                 for key in ["itemName", "score", "itemTag", "TagCondition"]:
                     if key not in item:
                         item[key] = "" if key != "score" else 0
+                        logger.info(f"评分项[{i}]缺少{key}字段，已自动补充默认值")
             
-            return {
+            result = {
                 "retCode": extracted_data.get("retCode", "0000"),
                 "retMessage": extracted_data.get("retMessage", "解析成功"),
                 "criteria": extracted_data.get("criteria", [])
             }
+            logger.info(f"商务评分标准提取完成，返回状态: {result['retCode']}，共提取{len(result['criteria'])}项评分标准")
+            return result
             
         except Exception as e:
-            logger.error(f"商务评分提取失败：{str(e)}")
+            logger.error(f"商务评分提取失败：{str(e)}", exc_info=True)
             raise Exception(f"商务评分提取出错：{e}")
+        finally:
+            logger.info("=== 商务评分标准提取流程结束 ===")
 
     @staticmethod
     def extract_catalogue(pdf_content: str, bid: str) -> dict:
         """提取并结构化目录信息"""
+        logger.info("=== 开始执行目录信息提取流程 ===")
         try:
             # 定义目录结构-业务标签对照表
+            logger.info("加载目录结构-业务标签对照表")
             official_catalogue_mapping = {
                 "附件一：投标函": [],
                 "附件二：法定代表人授权书": [],
@@ -316,8 +431,10 @@ class ExtractService:
                 "附件十九：其他材料": [],
                 "附件二十：反商业贿赂承诺书": []
             }
+            logger.info(f"目录结构-业务标签对照表加载完成，共包含{len(official_catalogue_mapping)}项对照关系")
             
             # 调用Qwen提取并筛选目录
+            logger.info("准备调用Qwen API进行目录信息提取")
             qwen_payload = {
                 "messages": [
                     {
@@ -445,7 +562,21 @@ class ExtractService:
             # 解析Qwen返回结果
             qwen_result = qwen_response.json()["choices"][0]["message"]["content"].strip()
             qwen_result = qwen_result.replace("```json", "").replace("```", "").strip()
-            processed_content = json.loads(qwen_result)
+            # processed_content = json.loads(qwen_result)
+            # 新增：用正则提取首个完整JSON对象（处理多余内容）
+            json_pattern = r'\{.*\}'  # 匹配最外层的{}包裹的内容
+            match = re.search(json_pattern, qwen_result, re.DOTALL)  # re.DOTALL让.匹配换行符
+            if not match:
+                raise Exception("Qwen返回结果中未找到有效的JSON内容")
+            cleaned_json_str = match.group(0)
+
+            # 新增：尝试解析并捕获错误
+            try:
+                processed_content = json.loads(cleaned_json_str)
+            except JSONDecodeError as e:
+                # 输出错误详情和原始内容，方便调试
+                logger.error(f"Qwen返回JSON解析失败：{str(e)}，原始内容：{cleaned_json_str[:500]}...")
+                raise Exception(f"Qwen返回结果格式错误：{str(e)}")
             
             # 结构校验与修正
             if "catalogue" not in processed_content:

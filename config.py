@@ -6,11 +6,14 @@ from enum import Enum
 from tempfile import TemporaryDirectory
 
 # 日志配置
+# 在config.py中
+LOG_FILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs", "tender_service.log")
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("logs/tender_service.log"),  # 日志输出到logs目录
+        logging.FileHandler(LOG_FILE_PATH),  # 日志输出到logs目录
         logging.StreamHandler()
     ]
 )

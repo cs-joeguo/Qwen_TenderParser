@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 import requests
 import os
 import time
 import json
+import datetime
 
 # API基础地址（根据实际部署情况修改）
 BASE_URL = "http://localhost:8000"
@@ -73,42 +75,42 @@ def get_score_result(bid: str) -> dict:
         return {"success": False, "message": f"查询结果失败: {str(e)}"}
 
 def main():
-    # 示例：处理基础招标信息任务
-    base_bid = "BID20250815001"
-    base_file = "demo/招标文件.docx"  # 替换为实际文件路径
+    # # 示例：处理基础招标信息任务
+    # base_bid = "BID20250815001_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
+    # base_file = "demo/招标文件.docx"  # 替换为实际文件路径
     
-    print("=== 提交基础招标信息任务 ===")
-    submit_result = submit_base_task(base_bid, base_file)
-    if not submit_result["success"]:
-        print(submit_result["message"])
-        return
+    # print("=== 提交基础招标信息任务 ===")
+    # submit_result = submit_base_task(base_bid, base_file)
+    # if not submit_result["success"]:
+    #     print(submit_result["message"])
+    #     return
     
-    print(f"任务提交成功: {json.dumps(submit_result['data'], indent=2)}")
-    task_id = submit_result["data"]["task_id"]
+    # print(f"任务提交成功: {json.dumps(submit_result['data'], indent=2)}")
+    # task_id = submit_result["data"]["task_id"]
     
-    # 轮询查询结果（实际使用时可调整间隔）
-    print("\n=== 等待基础任务处理完成 ===")
-    while True:
-        result = get_base_result(base_bid)
-        if not result["success"]:
-            print(result["message"])
-            break
+    # # 轮询查询结果（实际使用时可调整间隔）
+    # print("\n=== 等待基础任务处理完成 ===")
+    # while True:
+    #     result = get_base_result(base_bid)
+    #     if not result["success"]:
+    #         print(result["message"])
+    #         break
         
-        data = result["data"]
-        print(f"当前状态: {data.get('retCode')} - {data.get('retMessage')}")
+    #     data = result["data"]
+    #     print(f"当前状态: {data.get('retCode')} - {data.get('retMessage')}")
         
-        if data.get("retCode") == "0000":  # 成功状态
-            print("处理结果:")
-            print(json.dumps(data, indent=2))
-            break
-        elif data.get("retCode") == "9999":  # 失败状态
-            print("处理失败:", data.get("retMessage"))
-            break
+    #     if data.get("retCode") == "0000":  # 成功状态
+    #         print("处理结果:")
+    #         print(json.dumps(data, indent=2))
+    #         break
+    #     elif data.get("retCode") == "9999":  # 失败状态
+    #         print("处理失败:", data.get("retMessage"))
+    #         break
         
-        time.sleep(5)  # 5秒查询一次
+    #     time.sleep(5)  # 5秒查询一次
     
     # 示例：处理商务评分标准任务
-    score_bid = "BID20250815002"
+    score_bid = f"BID20250815002_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
     score_file = "demo/招标文件.docx"  # 替换为实际文件路径
     
     print("\n=== 提交商务评分标准任务 ===")
@@ -138,7 +140,7 @@ def main():
             print("处理失败:", data.get("retMessage"))
             break
         
-        time.sleep(5)
+        time.sleep(30)
 
 if __name__ == "__main__":
     main()

@@ -22,8 +22,10 @@ fi
 PROJECT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # 定义日志文件和PID文件路径
-LOG_FILE="$PROJECT_DIR/service.log"
+LOG_FILE="$PROJECT_DIR/service.log"  # 系统级日志（启动/崩溃信息）
 PID_FILE="$PROJECT_DIR/service.pid"
+APP_LOG_DIR="$PROJECT_DIR/logs"      # 应用业务日志目录
+APP_LOG_FILE="$APP_LOG_DIR/tender_service.log"  # 应用业务日志文件
 
 # 进入项目目录
 cd "$PROJECT_DIR" || {
@@ -51,6 +53,13 @@ start_service() {
         return 0
     fi
 
+    # 关键修改1：确保应用日志目录存在（自动创建logs文件夹）
+    mkdir -p "$APP_LOG_DIR"
+    if [ ! -d "$APP_LOG_DIR" ]; then
+        echo "错误: 无法创建日志目录 $APP_LOG_DIR，请检查权限"
+        exit 1
+    fi
+
     # 可选：创建并激活虚拟环境
     # if [ ! -d "venv" ]; then
     #     $PYTHON_CMD -m venv venv
@@ -59,12 +68,14 @@ start_service() {
     # source venv/bin/activate
 
     echo "启动招标信息处理服务..."
-    # 在后台运行，并将输出重定向到日志文件
+    # 关键修改2：仅重定向系统级输出（避免覆盖应用日志）
+    # 应用业务日志由Python的logging模块写入 $APP_LOG_FILE
     $PYTHON_CMD main.py > "$LOG_FILE" 2>&1 &
     echo $! > "$PID_FILE"
     
     echo "服务已启动 (PID: $(cat "$PID_FILE"))"
-    echo "日志文件: $LOG_FILE"
+    echo "系统日志文件: $LOG_FILE"       # 记录启动信息、未捕获异常等
+    echo "应用业务日志文件: $APP_LOG_FILE"  # 记录logger.info等业务日志
 }
 
 # 停止服务
@@ -98,19 +109,29 @@ stop_service() {
 check_status() {
     if is_running; then
         echo "服务正在运行 (PID: $(cat "$PID_FILE"))"
-        echo "日志文件: $LOG_FILE"
+        echo "系统日志文件: $LOG_FILE"
+        echo "应用业务日志文件: $APP_LOG_FILE"
     else
         echo "服务未在运行"
     fi
 }
 
-# 查看日志
+# 查看日志（默认查看应用业务日志，可按需切换）
 view_logs() {
-    if [ -f "$LOG_FILE" ]; then
-        echo "显示最新日志 (按Ctrl+C退出)..."
-        tail -f "$LOG_FILE"
+    # 关键修改3：默认查看应用业务日志，更符合日常调试需求
+    if [ "$2" = "system" ]; then
+        # 查看系统日志（如启动失败原因）：sh start.sh logs system
+        target_log="$LOG_FILE"
     else
-        echo "日志文件不存在: $LOG_FILE"
+        # 查看应用业务日志（如logger.info输出）：sh start.sh logs
+        target_log="$APP_LOG_FILE"
+    fi
+
+    if [ -f "$target_log" ]; then
+        echo "显示最新日志 (按Ctrl+C退出)，日志文件: $target_log..."
+        tail -f "$target_log"
+    else
+        echo "日志文件不存在: $target_log"
     fi
 }
 
@@ -122,7 +143,8 @@ show_help() {
     echo "  stop    - 停止服务"
     echo "  restart - 重启服务"
     echo "  status  - 查看服务状态"
-    echo "  logs    - 查看服务日志"
+    echo "  logs    - 查看应用业务日志（默认）"
+    echo "  logs system - 查看系统日志（启动/崩溃信息）"
     echo "  help    - 显示帮助信息"
 }
 
@@ -142,7 +164,7 @@ case "$1" in
         check_status
         ;;
     logs)
-        view_logs
+        view_logs "$@"
         ;;
     help)
         show_help
